@@ -29,4 +29,4 @@ jobs:
         protocol: ftp
         port: 21
         local-dir: ./.stitch/designs/
-        server-dir: public_html/B5/ # Chuyển vào public_html để hiển thị được trên web
+        server-dir: httpdocs/B5/ # Chính xác theo cấu trúc host của bạn
