@@ -29,4 +29,4 @@ jobs:
         protocol: ftp
         port: 21
         local-dir: ./.stitch/designs/
-        server-dir: B5/ # Quay lại thư mục gốc theo yêu cầu của bạn
+        server-dir: lp/ # Đổi tên thư mục đích thành lp
