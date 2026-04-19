@@ -14,10 +14,11 @@ jobs:
       uses: actions/checkout@v4
     
     # MẸO: Nếu bạn dùng Vite/React/Next.js, hãy bỏ dấu # ở các dòng dưới để hệ thống build trước khi upload
-    - name: 🏗️ Chuẩn bị file (Đưa new_index.html làm trang chính)
-      run: |
-        cd .stitch/designs
-        cp new_index.html index.html
+    # Bước chuẩn bị file (đã tắt để ưu tiên index.html bạn đang sửa)
+    # - name: 🏗️ Chuẩn bị file
+    #   run: |
+    #     cd .stitch/designs
+    #     cp new_index.html index.html
     
     - name: 📤 Upload qua FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
