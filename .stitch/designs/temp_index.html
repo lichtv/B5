@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VietnamMade by Ready2US</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Be Vietnam Pro', sans-serif;
+      }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- HEADER -->
+    <header id="page-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div id="logo-text" class="text-2xl font-bold text-white">
+            <a href="#home">Vietnam<span class="text-red-600">Made</span></a>
+          </div>
+          
+          <nav class="hidden md:flex items-center space-x-8">
+            <a href="#about" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">About</a>
+            <a href="#why-vietnam" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Why VietnamMade</a>
+            <a href="#services" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Services</a>
+            <a href="#brands" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Brand Showcase</a>
+            <a href="#contact" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Contact</a>
+          </nav>
+
+          <a href="#contact" class="hidden md:inline-block bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition-all duration-300 transform hover:scale-105">
+            Get Started
+          </a>
+
+          <div class="md:hidden">
+            <button id="menu-button" class="text-white focus:outline-none">
+              <svg id="menu-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+              <svg id="close-icon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm absolute top-full left-0 w-full">
+        <div class="flex flex-col items-center space-y-4 py-8">
+            <a href="#about" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">About</a>
+            <a href="#why-vietnam" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Why VietnamMade</a>
+            <a href="#services" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Services</a>
+            <a href="#brands" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Brand Showcase</a>
+            <a href="#contact" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Contact</a>
+            <a href="#contact" class="bg-red-600 text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition-all duration-300 mt-4">
+                Get Started
+            </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="home" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
+            <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover">
+                <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="relative z-20 container mx-auto px-6">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase tracking-wider leading-tight">
+                    Discover Authentic <span class="text-red-600">Vietnamese</span> Brands
+                </h1>
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">
+                    Welcome to VietnamMade, a curated selection of premium "Made in Vietnam" products ready for the US market. Powered by <span class="font-bold">Ready2US</span>.
+                </p>
+                <a href="#brands" class="mt-8 inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Explore Brands
+                </a>
+            </div>
+            <div class="absolute bottom-10 z-20 animate-bounce">
+                <svg class="w-8 h-8 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <!-- Video Column -->
+                    <div class="aspect-video rounded-lg overflow-hidden shadow-2xl ring-1 ring-gray-900/5">
+                        <iframe 
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/z5o_dI0s_J4" 
+                            title="Why VietnamMade - An Introduction" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+        
+                    <!-- Text Column -->
+                    <div class="text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Why <span class="text-red-600">VietnamMade?</span></h2>
+                        
+                        <div class="prose prose-lg mx-auto lg:mx-0 text-gray-600">
+                            <p>
+                                <strong>VietnamMade</strong> is more than just a directory; it's a launchpad. We are the premier showcase for the <strong>Ready2US</strong> program, dedicated to identifying and nurturing the best Vietnamese businesses.
+                            </p>
+                            <p>
+                                Our mission is to connect these exceptional brands—focused on quality, sustainability, and innovation—with partners, investors, and consumers in the United States.
+                            </p>
+                        </div>
+                        <ul class="mt-8 space-y-4 inline-flex flex-col items-start text-left max-w-md mx-auto lg:mx-0">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <span class="text-lg text-gray-700">Vetted & verified quality</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <span class="text-lg text-gray-700">Ready for the US market</span>
+                            </li>
+                        </ul>
+                        <div class="mt-10">
+                            <a href="#brands" class="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Explore Brands
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- WHY VIETNAM -->
+        <section id="why-vietnam" class="py-20 md:py-32 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Why Choose <span class="text-red-600">Vietnam?</span></h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Discover the strategic advantages that make Vietnam a global manufacturing powerhouse.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex justify-center items-center mb-6">
+                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Skilled Workforce</h3>
+                        <p class="text-gray-600">Access a young, educated, and highly motivated workforce adept in modern manufacturing techniques.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex justify-center items-center mb-6">
+                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.707 4.293l.586.586M11 20.945V19a2 2 0 012-2h0a2 2 0 012 2v1.945M16.293 4.293l-.586.586M12 21a9 9 0 110-18 9 9 0 010 18z" /></svg></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Strategic Location</h3>
+                        <p class="text-gray-600">Benefit from Vietnam's key position in global trade routes, facilitating efficient supply chains.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex justify-center items-center mb-6">
+                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M12 6h.01M12 18V5" /></svg></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Competitive Costs</h3>
+                        <p class="text-gray-600">Achieve significant cost savings with competitive labor and operational expenses without compromising quality.</p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex justify-center items-center mb-6">
+                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 4h5m-5 4h5" /></svg></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Growing Infrastructure</h3>
+                        <p class="text-gray-600">Leverage rapidly developing infrastructure, including ports, highways, and industrial parks.</p>
+                    </div>
+                    <!-- Feature 5 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex justify-center items-center mb-6">
+                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Stable Environment</h3>
+                        <p class="text-gray-600">Operate with confidence in a politically stable country with a pro-business government.</p>
+                    </div>
+                    <!-- Feature 6 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex justify-center items-center mb-6">
+                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 4h5m-5 4h5" /><path d="M14 21v-2a2 2 0 00-2-2H5a2 2 0 00-2 2v2" /><path d="M15 5v.01M15 12v.01M15 19v.01" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9a2 2 0 012-2h0a2 2 0 012 2v2a2 2 0 01-2 2h0a2 2 0 01-2-2v-2z" /></svg></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Trade Agreements</h3>
+                        <p class="text-gray-600">Take advantage of numerous free trade agreements that reduce tariffs and streamline exports.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">How It <span class="text-red-600">Works</span></h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">A streamlined process to bring your product from concept to reality.</p>
+                </div>
+                <div class="relative">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 transform -translate-y-1/2"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
+                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">01</div>
+                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Submit Your Request</h3>
+                            <p class="text-gray-600">Provide us with your detailed product specifications, quantity, and target price. The more details, the better!</p>
+                        </div>
+                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
+                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">02</div>
+                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">We Connect You</h3>
+                            <p class="text-gray-600">Our team vets and shortlists the most suitable factories from our trusted network, providing you with quotes and samples.</p>
+                        </div>
+                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
+                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">03</div>
+                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Finalize & Produce</h3>
+                            <p class="text-gray-600">You select the best partner. We assist with contract negotiation, quality control, and oversee the production process.</p>
+                        </div>
+                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
+                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">04</div>
+                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Deliver to the US</h3>
+                            <p class="text-gray-600">We manage the logistics, ensuring your products are delivered safely and on-time to your door in the United States.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="py-20 md:py-32 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Comprehensive <span class="text-red-600">Services</span></h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">We offer end-to-end solutions to ensure your sourcing journey is seamless and successful.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-blue-700 hover:shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Supplier Sourcing & Vetting</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200">We identify and rigorously vet potential manufacturing partners to meet your specific quality and capacity needs.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-blue-700 hover:shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Price Negotiation</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200">Our local expertise allows us to negotiate the best possible terms and pricing on your behalf.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-blue-700 hover:shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Quality Control & Inspection</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200">On-site inspections at every stage of production to ensure your standards are met without compromise.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-blue-700 hover:shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Prototyping & Sampling</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200">We manage the sample development process to ensure the final product matches your vision perfectly.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-blue-700 hover:shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Logistics & Shipping</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200">Full-service logistics management, from factory floor to your US warehouse, including customs clearance.</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-blue-700 hover:shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">IP Protection</h3>
+                        <p class="text-gray-600 group-hover:text-gray-200">We assist in implementing strategies and legal agreements to protect your intellectual property in Vietnam.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BRAND SHOWCASE -->
+        <section id="brands" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our <span class="text-red-600">Brand Showcase</span></h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                        Browse our directory of innovative and high-quality Vietnamese businesses poised for success in the US.
+                    </p>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-12">
+                    <input type="text" id="search-bar" placeholder="Search by name or keyword..." 
+                           class="w-full md:w-1/2 lg:w-1/3 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+                    
+                    <select id="category-filter" 
+                            class="w-full md:w-auto px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+
+                <!-- Brand Grid -->
+                <div id="brand-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Brand cards will be populated by JS -->
+                </div>
+                
+                <!-- No Results Message -->
+                <div id="no-results" class="hidden text-center text-gray-500 mt-12 py-10">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg>
+                    <h3 class="mt-2 text-2xl font-semibold">No Brands Found</h3>
+                    <p class="mt-1 text-base">Try adjusting your search or filter criteria.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials" class="py-20 md:py-32 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What Our <span class="text-red-600">Partners Say</span></h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Success stories from businesses we've helped thrive.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                        <img src="https://picsum.photos/id/64/200/200" alt="John Doe" class="w-20 h-20 rounded-full mb-4 border-2 border-red-600 object-cover" />
+                        <blockquote class="text-gray-700 italic mb-4">"Ready2US and their VietnamMade program transformed our supply chain. The quality and professionalism are second to none. Truly a game-changer for our business."</blockquote>
+                        <div class="font-bold text-gray-900">John Doe</div>
+                        <div class="text-red-600 text-sm">CEO, Innovate Inc.</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                        <img src="https://picsum.photos/id/433/200/200" alt="Jane Smith" class="w-20 h-20 rounded-full mb-4 border-2 border-red-600 object-cover" />
+                        <blockquote class="text-gray-700 italic mb-4">"Navigating the manufacturing landscape in Vietnam was daunting until we partnered with VietnamMade. Their team on the ground is invaluable."</blockquote>
+                        <div class="font-bold text-gray-900">Jane Smith</div>
+                        <div class="text-red-600 text-sm">Founder, TechGadgets Co.</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                        <img src="https://picsum.photos/id/56/200/200" alt="Sam Wilson" class="w-20 h-20 rounded-full mb-4 border-2 border-red-600 object-cover" />
+                        <blockquote class="text-gray-700 italic mb-4">"The cost savings and quality improvements have been remarkable. We couldn't have done it without their expert guidance and support."</blockquote>
+                        <div class="font-bold text-gray-900">Sam Wilson</div>
+                        <div class="text-red-600 text-sm">Supply Chain Manager, StyleWear</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="contact" class="py-20 md:py-32 bg-blue-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Ready to Start Your Sourcing Journey in Vietnam?</h2>
+                <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-8">
+                    Let's connect. Our team is ready to help you unlock the full potential of Vietnamese manufacturing for your business. Schedule a free consultation today.
+                </p>
+                <a href="mailto:contact@ready2us.com" class="inline-block bg-red-600 text-white font-bold py-4 px-10 rounded-full text-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Get Started Now
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-bold text-white mb-4">Vietnam<span class="text-red-600">Made</span></h3>
+            <p class="text-sm">A program by <a href="https://ready2us.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-red-600">Ready2US</a>. Connecting US businesses with premier Vietnamese manufacturers.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li><a href="#about" class="hover:text-red-600 transition-colors">About Us</a></li>
+              <li><a href="#why-vietnam" class="hover:text-red-600 transition-colors">Why VietnamMade</a></li>
+              <li><a href="#services" class="hover:text-red-600 transition-colors">Services</a></li>
+              <li><a href="#brands" class="hover:text-red-600 transition-colors">Brand Showcase</a></li>
+              <li><a href="#how-it-works" class="hover:text-red-600 transition-colors">How It Works</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Contact</h4>
+            <ul class="space-y-2 text-sm">
+              <li>Email: <a href="mailto:info@ready2us.com" class="hover:text-red-600">info@ready2us.com</a></li>
+              <li>Phone: +1 (641) 330-0560</li>
+              <li>6418 Wilcrest Dr., Ste B, Houston, TX 77072, USA</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Follow Us</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-red-600 transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.388 0-1.601 1.076-1.601 2.206v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.336 8.905H4.002v-8.59h2.671v8.59zM17.638 2H6.362A4.362 4.362 0 002 6.362v11.276A4.362 4.362 0 006.362 22h11.276A4.362 4.362 0 0022 17.638V6.362A4.362 4.362 0 0017.638 2z" clip-rule="evenodd"></path></svg></a>
+              <a href="#" class="hover:text-red-600 transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-sm">
+          <p>&copy; 2024 Ready2US. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // --- Sticky Header Logic ---
+        const header = document.getElementById('page-header');
+        const logoText = document.getElementById('logo-text');
+        const navLinks = document.querySelectorAll('#page-header nav a');
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 10) {
+            header.classList.add('bg-white/90', 'backdrop-blur-sm', 'shadow-lg');
+            header.classList.remove('bg-transparent');
+            logoText.classList.replace('text-white', 'text-gray-900');
+            navLinks.forEach(link => link.classList.replace('text-gray-300', 'text-gray-600'));
+            menuButton.classList.replace('text-white', 'text-gray-900');
+          } else {
+            header.classList.remove('bg-white/90', 'backdrop-blur-sm', 'shadow-lg');
+            header.classList.add('bg-transparent');
+            logoText.classList.replace('text-gray-900', 'text-white');
+            navLinks.forEach(link => link.classList.replace('text-gray-600', 'text-gray-300'));
+            menuButton.classList.replace('text-gray-900', 'text-white');
+          }
+        });
+
+        menuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          });
+        });
+
+        // --- Brand Showcase Logic ---
+        const brands = [
+            { id: 1, name: 'Vina Threads', category: 'Fashion', description: 'Sustainable and ethically sourced modern apparel for the conscious consumer.', imageUrl: 'https://images.pexels.com/photos/4210866/pexels-photo-4210866.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { id: 2, name: 'Saigon Wares', category: 'Home Goods', description: 'Handcrafted ceramic and wooden home decor with a minimalist aesthetic.', imageUrl: 'https://images.pexels.com/photos/6434622/pexels-photo-6434622.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { id: 3, name: 'Mekong Bites', category: 'Food & Bev', description: 'Authentic Vietnamese snacks and pantry staples made from organic ingredients.', imageUrl: 'https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { id: 4, name: 'Hanoi Tech', category: 'Tech', description: 'Innovative consumer electronics and smart home devices designed in Vietnam.', imageUrl: 'https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { id: 5, name: 'Dalat Chic', category: 'Fashion', description: 'High-end, elegant fashion combining traditional silk with contemporary design.', imageUrl: 'https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { id: 6, name: 'Hue Pottery', category: 'Home Goods', description: 'Artisanal pottery that brings centuries of imperial craftsmanship to your home.', imageUrl: 'https://images.pexels.com/photos/8603613/pexels-photo-8603613.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { id: 7, name: 'Pho Real', category: 'Food & Bev', description: 'Premium, restaurant-quality Pho kits for an authentic taste experience at home.', imageUrl: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=600' },
+        ];
+
+        const searchBar = document.getElementById('search-bar');
+        const categoryFilter = document.getElementById('category-filter');
+        const brandGrid = document.getElementById('brand-grid');
+        const noResults = document.getElementById('no-results');
+
+        const populateCategories = () => {
+            const categories = [...new Set(brands.map(brand => brand.category))];
+            categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+            categories.sort().forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categoryFilter.appendChild(option);
+            });
+        };
+
+        const renderBrands = (brandsToRender) => {
+            brandGrid.innerHTML = '';
+            if (brandsToRender.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                brandsToRender.forEach(brand => {
+                    const card = `
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                            <img src="${brand.imageUrl}" alt="${brand.name}" class="w-full h-48 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span class="text-sm font-semibold text-red-600 uppercase">${brand.category}</span>
+                                <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">${brand.name}</h3>
+                                <p class="text-gray-600 text-base flex-grow">${brand.description}</p>
+                                <div class="mt-4 pt-4 border-t border-gray-200 flex justify-end">
+                                    <a href="#" class="font-semibold text-red-600 hover:text-red-800 transition-colors duration-300 inline-flex items-center">
+                                        More detail
+                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    brandGrid.innerHTML += card;
+                });
+            }
+        };
+        
+        const filterAndRender = () => {
+            const searchTerm = searchBar.value.toLowerCase();
+            const selectedCategory = categoryFilter.value;
+
+            const filteredBrands = brands.filter(brand => {
+                const matchesCategory = selectedCategory === 'all' || brand.category === selectedCategory;
+                const matchesSearch = brand.name.toLowerCase().includes(searchTerm) || brand.description.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+
+            renderBrands(filteredBrands);
+        };
+
+        // Initial Load
+        populateCategories();
+        renderBrands(brands);
+
+        // Event Listeners
+        searchBar.addEventListener('input', filterAndRender);
+        categoryFilter.addEventListener('change', filterAndRender);
+      });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
