@@ -1,0 +1,33 @@
+name: 🚀 Tự động đồng bộ FTP
+
+on:
+  push:
+    branches:
+      - main  # Thay bằng 'master' nếu bạn dùng tên branch cũ
+
+jobs:
+  web-deploy:
+    name: 🚚 Deploy Landing Page
+    runs-on: ubuntu-latest
+    steps:
+    - name: 📥 Lấy code mới nhất
+      uses: actions/checkout@v4
+    
+    # MẸO: Nếu bạn dùng Vite/React/Next.js, hãy bỏ dấu # ở các dòng dưới để hệ thống build trước khi upload
+    # - name: 🏗️ Cài đặt Node.js & Build
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: '20'
+    # - run: npm install
+    # - run: npm run build
+
+    - name: 📤 Upload qua FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftp
+        port: 21
+        # local-dir: ./dist/  # Nhập thư mục chứa file đã build (ví dụ: ./dist/ hoặc ./build/)
+        # server-dir: /public_html/ # Thư mục trên hosting của bạn (mặc định là thư mục gốc)
