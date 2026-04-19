@@ -285,7 +285,69 @@
 </div>
 </div>
 </div>
+</div>
 </section>
+
+<!-- FORM ĐĂNG KÝ NHẬN CẨM NANG -->
+<section class="py-24 bg-primary-container relative overflow-hidden" id="download-guide">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+    <div class="max-w-7xl mx-auto px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Cột trái: Selling Proposition -->
+            <div>
+                <span class="inline-block bg-tertiary text-white font-label text-xs tracking-wider uppercase px-4 py-1.5 rounded-full mb-6 shadow-md">Tài liệu Miễn phí</span>
+                <h2 class="text-3xl md:text-5xl font-headline font-bold text-on-primary mb-6 leading-tight">Cẩm nang Hành động 2026: Đưa Sản Phẩm Việt Vào Mỹ</h2>
+                <p class="text-lg text-on-primary-container font-body leading-relaxed mb-8">Cuốn cẩm nang đúc kết kinh nghiệm xương máu từ các chuyên gia VISIA, giúp bạn nắm vững 3 năng lực cốt lõi khi mở rộng thị trường:</p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-tertiary mr-3 shrink-0">check_circle</span>
+                        <span class="text-on-primary-container text-lg"><strong>Pháp lý:</strong> 7 bước chuẩn hóa hồ sơ FDA & bảo hộ nhãn hiệu.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-tertiary mr-3 shrink-0">check_circle</span>
+                        <span class="text-on-primary-container text-lg"><strong>Logistics:</strong> Thiết lập chuỗi cung ứng lạnh xuyên biên giới.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-tertiary mr-3 shrink-0">check_circle</span>
+                        <span class="text-on-primary-container text-lg"><strong>Thương hiệu:</strong> Bản thiết kế kể chuyện Heritage Marketing.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Cột phải: Form nhập liệu -->
+            <div class="bg-surface p-8 md:p-10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                <h3 class="text-2xl font-headline font-bold text-on-surface mb-2">Nhận Cẩm Nang Ngay</h3>
+                <p class="text-sm text-on-surface-variant font-body mb-8">Link tải tự động sẽ được gửi trực tiếp vào email của bạn.</p>
+                
+                <form id="leadForm" class="space-y-5">
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-on-surface mb-1">Họ và Tên *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Nhập họ và tên..." class="w-full bg-surface-container-low border border-surface-variant rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-on-surface mb-1">Email Doanh Nghiệp *</label>
+                        <input type="email" id="email" name="email" required placeholder="name@company.com" class="w-full bg-surface-container-low border border-surface-variant rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-on-surface mb-1">Số Điện Thoại *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Số điện thoại cá nhân/zalo..." class="w-full bg-surface-container-low border border-surface-variant rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-on-surface mb-1">Tên Doanh Nghiệp / Sản Phẩm *</label>
+                        <input type="text" id="company" name="company" required placeholder="Công ty TNHH..." class="w-full bg-surface-container-low border border-surface-variant rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="w-full bg-tertiary text-white hover:bg-[#880600] font-label font-bold text-sm tracking-wider uppercase py-4 rounded-xl transition-colors shadow-lg flex justify-center items-center mt-6">
+                        <span>GỬI CHO TÔI CẨM NANG</span>
+                        <div id="loadingSpinner" class="hidden ml-3 h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </button>
+                    <div id="formMsg" class="hidden text-center text-sm font-medium p-3 rounded-lg mt-4"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-24 bg-surface" id="faq">
 <div class="max-w-4xl mx-auto px-8">
 <div class="text-center mb-16">
@@ -360,6 +422,74 @@
         <div class="border-t border-gray-800 pt-8 text-center text-sm">
           <p>&copy; 2026 READ2US Accelerator. All rights reserved. Empowering Vietnamese Global Success through Storytelling.</p>
         </div>
+        </div>
       </div>
     </footer>
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('loadingSpinner');
+            const btnText = submitBtn.querySelector('span');
+            const formMsg = document.getElementById('formMsg');
+            
+            // UI: Show loading
+            submitBtn.disabled = true;
+            spinner.classList.remove('hidden');
+            btnText.textContent = 'ĐANG GỬI...';
+            formMsg.classList.add('hidden');
+            formMsg.className = 'text-center text-sm font-medium p-3 rounded-lg mt-4 hidden';
+            
+            // Gather data
+            const formData = new FormData(this);
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                company: formData.get('company'),
+                source: window.location.href
+            };
+            
+            // URL của Google Apps Script Web App sẽ được thay thế sau
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+            
+            if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+                alert('Bạn cần thay đổi "YOUR_GOOGLE_APPS_SCRIPT_URL" thành URL của Google Apps Script trong file index.html');
+                submitBtn.disabled = false;
+                spinner.classList.add('hidden');
+                btnText.textContent = 'GỬI CHO TÔI CẨM NANG';
+                return;
+            }
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8' // Quan trọng cho CORS Google Script
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    formMsg.textContent = 'Đăng ký thành công! Vui lòng kiểm tra hộp thư đến (hoặc Spam/Promotions).';
+                    formMsg.classList.add('bg-surface-container-high', 'text-primary');
+                    formMsg.classList.remove('hidden');
+                    document.getElementById('leadForm').reset();
+                } else {
+                    throw new Error('Server error');
+                }
+            })
+            .catch(error => {
+                formMsg.textContent = 'Có lỗi xảy ra kết nối máy chủ. Vui lòng thử lại sau.';
+                formMsg.classList.add('bg-error-container', 'text-error');
+                formMsg.classList.remove('hidden');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                spinner.classList.add('hidden');
+                btnText.textContent = 'GỬI CHO TÔI CẨM NANG';
+            });
+        });
+    </script>
 </body></html>
