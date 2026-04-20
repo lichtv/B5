@@ -13,36 +13,36 @@
         font-family: 'Be Vietnam Pro', sans-serif;
       }
     </style>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
 
     <!-- HEADER -->
-    <header id="page-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-      <div class="container mx-auto px-6 py-4">
+    <header id="page-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+      <div class="container mx-auto px-6">
         <div class="flex items-center justify-between">
-          <div id="logo-text" class="text-2xl font-bold text-white">
+          <div id="logo-text" class="text-3xl font-black text-white tracking-tighter">
             <a href="#home">Vietnam<span class="text-red-600">Made</span></a>
           </div>
           
-          <nav class="hidden md:flex items-center space-x-8">
-            <a href="#about" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Về chúng tôi</a>
-            <a href="#why-vietnam" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Tại sao chọn Việt Nam</a>
-            <a href="#services" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Dịch vụ</a>
-            <a href="#brands" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Thương hiệu</a>
-            <a href="#contact" class="text-gray-300 hover:text-red-600 transition-colors duration-300 font-medium">Liên hệ</a>
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a href="#about" class="text-white hover:text-red-600 transition-colors duration-300 font-medium header-link">Về Chúng Tôi</a>
+            <a href="#why-vietnam" class="text-white hover:text-red-600 transition-colors duration-300 font-medium header-link">Lợi Thế Việt</a>
+            <a href="#services" class="text-white hover:text-red-600 transition-colors duration-300 font-medium header-link">Dịch Vụ</a>
+            <a href="#brands" class="text-white hover:text-red-600 transition-colors duration-300 font-medium header-link">Thương Hiệu</a>
           </nav>
 
-          <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA" class="hidden md:inline-block bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition-all duration-300 transform hover:scale-105">
-            Bắt đầu ngay
+          <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA" class="hidden lg:inline-block bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-md">
+            Bắt Đầu Ngay
           </a>
 
-          <div class="md:hidden">
-            <button id="menu-button" class="text-white focus:outline-none">
-              <svg id="menu-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <!-- Mobile Button -->
+          <div class="lg:hidden">
+            <button id="menu-button" class="text-white focus:outline-none p-2 rounded-md hover:bg-white/10 transition-colors">
+              <svg id="menu-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
               </svg>
-              <svg id="close-icon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg id="close-icon" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -50,16 +50,15 @@
         </div>
       </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm absolute top-full left-0 w-full">
-        <div class="flex flex-col items-center space-y-4 py-8">
-            <a href="#about" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Về chúng tôi</a>
-            <a href="#why-vietnam" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Tại sao chọn Việt Nam</a>
-            <a href="#services" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Dịch vụ</a>
-            <a href="#brands" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Thương hiệu</a>
-            <a href="#contact" class="text-lg text-gray-700 hover:text-red-600 transition-colors duration-300">Liên hệ</a>
-            <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA" class="bg-red-600 text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition-all duration-300 mt-4">
-                Bắt đầu ngay
+      <!-- Mobile Menu Overlay -->
+      <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-white">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#about" class="text-2xl font-bold text-gray-800 hover:text-red-600">Về Chúng Tôi</a>
+            <a href="#why-vietnam" class="text-2xl font-bold text-gray-800 hover:text-red-600">Lợi Thế Việt</a>
+            <a href="#services" class="text-2xl font-bold text-gray-800 hover:text-red-600">Dịch Vụ</a>
+            <a href="#brands" class="text-2xl font-bold text-gray-800 hover:text-red-600">Thương Hiệu</a>
+            <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA" class="bg-red-600 text-white font-bold py-4 px-10 rounded-full text-xl hover:bg-red-700 transition-all shadow-xl">
+                Bắt Đầu Ngay
             </a>
         </div>
       </div>
@@ -68,626 +67,328 @@
     <main>
         <!-- HERO -->
         <section id="home" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
-            <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover">
+            <div class="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
+            <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-110">
                 <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4" />
-                Trình duyệt của bạn không hỗ trợ video.
             </video>
-            <div class="relative z-20 container mx-auto px-6">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase tracking-wider leading-tight">
-                    Khám phá Thương hiệu <span class="text-red-600">Việt</span> Đẳng cấp
+            <div class="relative z-20 container mx-auto px-4">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
+                    Kết Nối <br class="hidden sm:block"> Thương Hiệu <span class="text-red-600">Việt</span> Tầm Cỡ
                 </h1>
-                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">
-                    Chào mừng đến với VietnamMade, danh mục tuyển chọn các sản phẩm "Made in Vietnam" cao cấp sẵn sàng cho thị trường Hoa Kỳ. Được vận hành bởi <span class="font-bold">Ready2US</span>.
+                <p class="text-lg md:text-2xl max-w-2xl mx-auto text-gray-300 mb-10 leading-relaxed font-light">
+                    Cầu nối đưa sản phẩm "Made in Vietnam" chất lượng cao đến thị trường Hoa Kỳ. Đồng hành bởi <span class="font-bold border-b border-red-600">Ready2US</span>.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-                    <a href="#brands" class="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Khám phá Thương hiệu
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#brands" class="bg-red-600 text-white font-bold py-4 px-10 rounded-full text-lg hover:bg-red-700 transition-all shadow-2xl hover:scale-105 active:scale-95">
+                        Xem Danh Mục
                     </a>
-                    <a href="#lead-magnet" class="inline-block bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Nhận Cẩm nang Xuất khẩu
+                    <a href="#lead-magnet" class="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-10 rounded-full text-lg hover:bg-white/20 transition-all border border-white/30">
+                        Nhận Cẩm Nang Sourcing
                     </a>
                 </div>
-            </div>
-            <div class="absolute bottom-10 z-20 animate-bounce">
-                <svg class="w-8 h-8 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
             </div>
         </section>
 
         <!-- ABOUT -->
-        <section id="about" class="py-20 md:py-32 bg-white">
+        <section id="about" class="py-24 bg-white">
             <div class="container mx-auto px-6 max-w-7xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
-                    <!-- Video Column -->
-                    <div class="aspect-video rounded-lg overflow-hidden shadow-2xl ring-1 ring-gray-900/5">
-                        <iframe 
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/z5o_dI0s_J4" 
-                            title="VietnamMade là gì?" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-        
-                    <!-- Text Column -->
-                    <div class="text-center lg:text-left">
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Tại sao chọn <span class="text-red-600">VietnamMade?</span></h2>
-                        
-                        <div class="prose prose-lg mx-auto lg:mx-0 text-gray-600">
-                            <p>
-                                <strong>VietnamMade</strong> không chỉ là một danh bạ; đây là bệ phóng cho các doanh nghiệp Việt. Chúng tôi là cầu nối quan trọng trong chương trình <strong>Ready2US</strong>, chuyên tâm tìm kiếm và nuôi dưỡng những doanh nghiệp Việt Nam tiềm năng nhất.
-                            </p>
-                            <p>
-                                Sứ mệnh của chúng tôi là kết nối những thương hiệu xuất sắc—tập trung vào chất lượng, tính bền vững và sự đổi mới—với các đối tác, nhà đầu tư và người tiêu dùng tại Hoa Kỳ.
-                            </p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-red-600/10 rounded-2xl scale-95 group-hover:scale-100 transition-transform duration-500"></div>
+                        <div class="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/z5o_dI0s_J4" title="Ready2US Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                        <ul class="mt-8 space-y-4 inline-flex flex-col items-start text-left max-w-md mx-auto lg:mx-0">
-                            <li class="flex items-center gap-3">
-                                <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span class="text-lg text-gray-700">Chất lượng đã được kiểm định & xác thực</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <svg class="w-6 h-6 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span class="text-lg text-gray-700">Sẵn sàng cho thị trường Hoa Kỳ</span>
-                            </li>
-                        </ul>
-                        <div class="mt-10">
-                            <a href="#brands" class="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                Khám phá Thương hiệu
-                            </a>
+                    </div>
+                    <div>
+                        <span class="text-red-600 font-bold tracking-widest uppercase mb-4 block">Nguồn Gốc</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-8 leading-tight">Hơn Cả Danh Mục, Một Cuộc Cách Mạng <span class="text-red-600">Sourcing.</span></h2>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            <strong>VietnamMade</strong> là nền tảng trưng bày ưu tú thuộc chương trình <strong>Ready2US</strong>, chuyên tìm kiếm và nuôi dưỡng các doanh nghiệp Việt Nam xuất sắc nhất.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Chúng tôi kết nối những thương hiệu tâm huyết về chất lượng và sự bền vững này trực tiếp tới các đối tác Hoa Kỳ, loại bỏ mọi rào cản trung gian.
+                        </p>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div><h4 class="font-bold text-2xl text-red-600 mb-1">100%</h4><p class="text-sm text-gray-500 uppercase font-black">Xác Thực</p></div>
+                            <div><h4 class="font-bold text-2xl text-red-600 mb-1">24/7</h4><p class="text-sm text-gray-500 uppercase font-black">Hỗ Trợ</p></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
 
         <!-- WHY VIETNAM -->
-        <section id="why-vietnam" class="py-20 md:py-32 bg-gray-100">
+        <section id="why-vietnam" class="py-24 bg-gray-50">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Tại sao chọn <span class="text-red-600">Nguồn cung Việt Nam?</span></h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Khám phá những lợi thế chiến lược đưa Việt Nam trở thành trung tâm sản xuất toàn cầu mới.</p>
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Tại Sao <span class="text-red-600">Việt Nam?</span></h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Việt Nam đang trỗi dậy mạnh mẽ như một trung tâm sản xuất chiến lược của thế giới.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex justify-center items-center mb-6">
-                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lực lượng lao động tay nghề cao</h3>
-                        <p class="text-gray-600">Tiếp cận nguồn lao động trẻ, được đào tạo bài bản và luôn nhạy bén với các kỹ thuật sản xuất hiện đại.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl transition-all">
+                        <div class="text-4xl mb-6">🎯</div>
+                        <h3 class="text-2xl font-bold mb-4">Chi Phí Tối Ưu</h3>
+                        <p class="text-gray-500 leading-relaxed">Cung cấp lợi thế cạnh tranh về chi phí vận hành mà không ảnh hưởng đến tiêu chuẩn chất lượng quốc tế.</p>
                     </div>
-                    <!-- Feature 2 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex justify-center items-center mb-6">
-                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.707 4.293l.586.586M11 20.945V19a2 2 0 012-2h0a2 2 0 012 2v1.945M16.293 4.293l-.586.586M12 21a9 9 0 110-18 9 9 0 010 18z" /></svg></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Vị trí địa lý chiến lược</h3>
-                        <p class="text-gray-600">Tận dụng vị thế then chốt của Việt Nam trên các tuyến thương mại toàn cầu, giúp tối ưu hóa chuỗi cung ứng.</p>
+                    <div class="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl transition-all">
+                        <div class="text-4xl mb-6">⚡</div>
+                        <h3 class="text-2xl font-bold mb-4">Tốc Độ Linh Hoạt</h3>
+                        <p class="text-gray-500 leading-relaxed">Khả năng thích ứng nhanh với các xu hướng thị trường và quy mô sản xuất đa dạng.</p>
                     </div>
-                    <!-- Feature 3 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex justify-center items-center mb-6">
-                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M12 6h.01M12 18V5" /></svg></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Chi phí cạnh tranh</h3>
-                        <p class="text-gray-600">Tiết kiệm đáng kể với chi phí nhân công và vận hành cạnh tranh mà không làm giảm chất lượng sản phẩm.</p>
-                    </div>
-                    <!-- Feature 4 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex justify-center items-center mb-6">
-                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 4h5m-5 4h5" /></svg></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Hạ tầng đang phát triển mạnh</h3>
-                        <p class="text-gray-600">Kế thừa hệ thống hạ tầng đang được đầu tư quy mô, bao gồm cảng biển, cao tốc và các khu công nghiệp hiện đại.</p>
-                    </div>
-                    <!-- Feature 5 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex justify-center items-center mb-6">
-                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Môi trường ổn định</h3>
-                        <p class="text-gray-600">Hoạt động tự tin tại một quốc gia ổn định về chính trị với các chính sách chính phủ hỗ trợ doanh nghiệp tối đa.</p>
-                    </div>
-                    <!-- Feature 6 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex justify-center items-center mb-6">
-                            <div class="bg-gray-200 p-4 rounded-full text-red-600"><svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 4h5m-5 4h5" /><path d="M14 21v-2a2 2 0 00-2-2H5a2 2 0 00-2 2v2" /><path d="M15 5v.01M15 12v.01M15 19v.01" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9a2 2 0 012-2h0a2 2 0 012 2v2a2 2 0 01-2 2h0a2 2 0 01-2-2v-2z" /></svg></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Ưu đãi Thuế quan</h3>
-                        <p class="text-gray-600">Tận dụng hàng loạt các Hiệp định Thương mại tự do giúp giảm thuế và đơn giản hóa quy trình xuất khẩu sang Mỹ.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HOW IT WORKS -->
-        <section id="how-it-works" class="py-20 md:py-32 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Quy trình <span class="text-red-600">Hoạt động</span></h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Quy trình tối ưu hóa giúp đưa sản phẩm của bạn từ ý tưởng đến tay người tiêu dùng Mỹ.</p>
-                </div>
-                <div class="relative">
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 transform -translate-y-1/2"></div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
-                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">01</div>
-                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Gửi yêu cầu của bạn</h3>
-                            <p class="text-gray-600">Cung cấp bộ thông số sản phẩm chi tiết, số lượng và giá mục tiêu. Càng chi tiết, chúng tôi càng hỗ trợ tốt hơn!</p>
-                        </div>
-                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
-                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">02</div>
-                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Chúng tôi kết nối bạn</h3>
-                            <p class="text-gray-600">Đội ngũ của chúng tôi kiểm duyệt và lựa chọn các nhà máy phù hợp nhất trong mạng lưới tin cậy để cung cấp báo giá và mẫu thử.</p>
-                        </div>
-                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
-                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">03</div>
-                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Chốt phương án & Sản xuất</h3>
-                            <p class="text-gray-600">Bạn chọn đối tác tốt nhất. Chúng tôi hỗ trợ đàm phán hợp đồng, kiểm soát chất lượng và giám sát toàn bộ quá trình sản xuất.</p>
-                        </div>
-                        <div class="relative text-center p-6 bg-white rounded-lg shadow-xl border border-gray-200">
-                            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-red-600 text-white font-bold text-xl">04</div>
-                            <h3 class="mt-8 text-xl font-bold text-gray-900 mb-3">Vận chuyển đến Hoa Kỳ</h3>
-                            <p class="text-gray-600">Chúng tôi quản lý Logistics, đảm bảo sản phẩm được giao an toàn và đúng hạn đến bất kỳ đâu trên khắp nước Mỹ.</p>
-                        </div>
+                    <div class="bg-white p-12 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl transition-all">
+                        <div class="text-4xl mb-6">🌿</div>
+                        <h3 class="text-2xl font-bold mb-4">Phát Triển Bền Vững</h3>
+                        <p class="text-gray-500 leading-relaxed">Cam kết ngày càng tăng đối với các quy trình sản xuất xanh và trách nhiệm xã hội.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SERVICES -->
-        <section id="services" class="py-20 md:py-32 bg-gray-100">
+        <section id="services" class="py-24 bg-gray-900 text-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Dịch vụ <span class="text-red-600">Toàn diện</span></h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Chúng tôi cung cấp các giải pháp đầu-cuối để đảm bảo hành trình của bạn diễn ra suôn sẻ và thành công.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-red-700 hover:shadow-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Tìm kiếm & Kiểm định Nhà cung cấp</h3>
-                        <p class="text-gray-600 group-hover:text-gray-200">Chúng tôi xác định và kiểm định khắt khe các đối tác sản xuất tiềm năng để đáp ứng nhu cầu cụ thể của bạn.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-black mb-10 leading-tight">Giải Pháp <span class="text-red-600 underline">Toàn Diện</span> Cho Doanh Nghiệp.</h2>
+                        <div class="space-y-10">
+                            <div class="flex gap-6">
+                                <div class="text-4xl font-bold text-red-600/30">01</div>
+                                <div><h4 class="text-xl font-bold mb-2">Thẩm Định Nhà Máy</h4><p class="text-gray-400">Đảm bảo đối tác của bạn đáp ứng các tiêu chuẩn khắt khe nhất về kỹ thuật và đạo đức kinh doanh.</p></div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="text-4xl font-bold text-red-600/30">02</div>
+                                <div><h4 class="text-xl font-bold mb-2">Kiểm Soát Chất Lượng</h4><p class="text-gray-400">Kiểm tra nghiêm ngặt từng lô hàng ngay tại xưởng trước khi xuất khẩu.</p></div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="text-4xl font-bold text-red-600/30">03</div>
+                                <div><h4 class="text-xl font-bold mb-2">Logistics Trọn Gói</h4><p class="text-gray-400">Xử lý toàn bộ quy trình vận chuyển và thủ tục hải quan từ Việt Nam sang Hoa Kỳ.</p></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-red-700 hover:shadow-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Đàm phán Giá cả</h3>
-                        <p class="text-gray-600 group-hover:text-gray-200">Kinh nghiệm tại địa phương cho phép chúng tôi đàm phán các điều khoản và mức giá tốt nhất thay cho bạn.</p>
-                    </div>
-                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-red-700 hover:shadow-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Kiểm soát Chất lượng & Giám định</h3>
-                        <p class="text-gray-600 group-hover:text-gray-200">Giám sát tại hiện trường trong mọi giai đoạn sản xuất để đảm bảo các tiêu chuẩn được duy trì tuyệt đối.</p>
-                    </div>
-                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-red-700 hover:shadow-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Làm mẫu & Thử nghiệm</h3>
-                        <p class="text-gray-600 group-hover:text-gray-200">Chúng tôi quản lý quy trình phát triển mẫu để đảm bảo sản phẩm cuối cùng khớp hoàn hảo với tầm nhìn của bạn.</p>
-                    </div>
-                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-red-700 hover:shadow-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Logistics & Vận tải</h3>
-                        <p class="text-gray-600 group-hover:text-gray-200">Quản lý Logistics toàn phần từ xưởng sản xuất đến kho bãi tại Mỹ, bao gồm cả thủ tục hải quan.</p>
-                    </div>
-                    <div class="bg-white rounded-lg p-6 group transition-all duration-300 hover:bg-red-700 hover:shadow-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Bảo hộ Sở hữu Trí tuệ</h3>
-                        <p class="text-gray-600 group-hover:text-gray-200">Chúng tôi hỗ trợ triển khai các chiến lược và thỏa thuận pháp lý để bảo vệ tài sản trí tuệ của bạn tại Việt Nam.</p>
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-3xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- BRAND SHOWCASE -->
-        <section id="brands" class="py-16 sm:py-24 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Danh mục <span class="text-red-600">Thương hiệu</span></h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-                        Duyệt qua danh mục các doanh nghiệp Việt Nam đổi mới và chất lượng cao đang sẵn sàng bứt phá tại Mỹ.
-                    </p>
-                </div>
-
-                <!-- Filters -->
-                <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-12">
-                    <input type="text" id="search-bar" placeholder="Tìm kiếm theo tên hoặc từ khóa..." 
-                           class="w-full md:w-1/2 lg:w-1/3 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition">
-                    
-                    <select id="category-filter" 
-                            class="w-full md:w-auto px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-500 transition">
-                        <!-- Options will be populated by JS -->
-                    </select>
-                </div>
-
-                <!-- Brand Grid -->
-                <div id="brand-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Brand cards will be populated by JS -->
-                </div>
-                
-                <!-- No Results Message -->
-                <div id="no-results" class="hidden text-center text-gray-500 mt-12 py-10">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                    </svg>
-                    <h3 class="mt-2 text-2xl font-semibold">Không tìm thấy thương hiệu nào</h3>
-                    <p class="mt-1 text-base">Hảy thử điều chỉnh từ khóa tìm kiếm hoặc danh mục bộ lọc.</p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- TESTIMONIALS -->
-        <section id="testimonials" class="py-20 md:py-32 bg-gray-100">
+        <section id="brands" class="py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Đối tác <span class="text-red-600">Nói gì về Chúng tôi?</span></h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Những câu chuyện thành công từ các doanh nghiệp chúng tôi đã đồng hành.</p>
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Trưng Bày <span class="text-red-600">Thương Hiệu</span></h2>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <input type="text" id="search-bar" placeholder="Tìm kiếm thương hiệu..." class="w-full sm:max-w-xs px-6 py-4 bg-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-red-600">
+                        <select id="category-filter" class="w-full sm:w-auto px-6 py-4 bg-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-red-600 font-bold uppercase text-xs tracking-widest">
+                            <option value="Tất cả">Tất cả danh mục</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                        <img src="https://picsum.photos/id/64/200/200" alt="Huy Nguyen" class="w-20 h-20 rounded-full mb-4 border-2 border-red-600 object-cover" />
-                        <blockquote class="text-gray-700 italic mb-4">"Ready2US và chương trình VietnamMade đã thay đổi hoàn toàn chuỗi cung ứng của chúng tôi. Chất lượng và sự chuyên nghiệp thực sự vượt trội."</blockquote>
-                        <div class="font-bold text-gray-900">Huy Nguyen</div>
-                        <div class="text-red-600 text-sm">CEO, Innovate Inc.</div>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                        <img src="https://picsum.photos/id/433/200/200" alt="Jane Smith" class="w-20 h-20 rounded-full mb-4 border-2 border-red-600 object-cover" />
-                        <blockquote class="text-gray-700 italic mb-4">"Môi trường sản xuất tại Việt Nam từng là một thách thức lớn cho đến khi chúng tôi hợp tác với VietnamMade. Đội ngũ tại chỗ của họ là tài sản vô giá."</blockquote>
-                        <div class="font-bold text-gray-900">Jane Smith</div>
-                        <div class="text-red-600 text-sm">Sáng lập, TechGadgets Co.</div>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                        <img src="https://picsum.photos/id/56/200/200" alt="Sam Wilson" class="w-20 h-20 rounded-full mb-4 border-2 border-red-600 object-cover" />
-                        <blockquote class="text-gray-700 italic mb-4">"Tiết kiệm chi phí và cải thiện chất lượng là những gì chúng tôi nhận được. Chúng tôi không thể làm được điều đó nếu không có sự hướng dẫn chuyên sâu của họ."</blockquote>
-                        <div class="font-bold text-gray-900">Sam Wilson</div>
-                        <div class="text-red-600 text-sm">Quản lý Cung ứng, StyleWear</div>
-                    </div>
+                <div id="brand-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Cards via JS -->
                 </div>
             </div>
         </section>
 
-        <!-- LEAD MAGNET FORM -->
-        <section id="lead-magnet" class="py-20 md:py-32 bg-white">
-            <div class="container mx-auto px-6 max-w-5xl">
-                <div class="bg-gradient-to-br from-red-50 to-white border border-red-100 rounded-2xl shadow-2xl overflow-hidden">
-                    <div class="grid grid-cols-1 lg:grid-cols-2">
-                        <!-- Left: Book Info -->
-                        <div class="bg-red-600 p-10 md:p-14 flex flex-col justify-center text-white">
-                            <div class="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6 w-fit">📘 Tài Liệu Miễn Phí</div>
-                            <h2 class="text-2xl md:text-3xl font-extrabold leading-tight mb-4">
-                                SÁCH HƯỚNG DẪN<br>TIẾP CẬN THỊ TRƯỜNG<br><span class="text-yellow-300">HOA KỲ</span>
-                            </h2>
-                            <p class="text-red-100 text-sm mb-6 leading-relaxed">
-                                Khám phá "Chìa khóa" Chinh phục Nền Kinh tế Lớn nhất Thế giới — từ chiến lược thâm nhập, luật nhãn mác FDA, bảo hộ thương hiệu, đến kênh bán hàng Amazon, eBay.
-                            </p>
-                            <ul class="space-y-3 text-sm">
-                                <li class="flex items-start gap-2"><span class="text-yellow-300 mt-0.5">✔</span> Chuẩn bị toàn diện: mã HS, thuế quan, website chuyên nghiệp</li>
-                                <li class="flex items-start gap-2"><span class="text-yellow-300 mt-0.5">✔</span> Chiến lược thâm nhập thị trường ngách & mô hình OEM</li>
-                                <li class="flex items-start gap-2"><span class="text-yellow-300 mt-0.5">✔</span> Am hiểu luật FDA, chống bán phá giá & bảo vệ thương hiệu</li>
-                                <li class="flex items-start gap-2"><span class="text-yellow-300 mt-0.5">✔</span> Bán hàng trực tiếp qua Amazon, eBay & quản trị rủi ro</li>
-                            </ul>
-                        </div>
-
-                        <!-- Right: Form -->
-                        <div class="p-10 md:p-14 flex flex-col justify-center">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Nhận Sách <span class="text-red-600">Miễn Phí</span> Ngay!</h3>
-                            <p class="text-gray-500 text-sm mb-8">Điền thông tin bên dưới — chúng tôi sẽ gửi link tải ngay cho bạn.</p>
-
-                            <!-- Success State (hidden by default) -->
-                            <div id="form-success" class="hidden text-center py-8">
-                                <div class="text-5xl mb-4">🎉</div>
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Cảm ơn bạn!</h4>
-                                <p class="text-gray-600">Link tải sách đã được gửi vào email của bạn. Vui lòng kiểm tra hộp thư (kể cả Spam).</p>
+        <!-- LEAD MAGNET -->
+        <section id="lead-magnet" class="py-24 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="bg-gray-900 rounded-[3rem] overflow-hidden flex flex-col md:flex-row shadow-2xl">
+                    <div class="bg-red-600 p-12 md:p-20 text-white md:w-5/12 flex flex-col justify-center">
+                        <h2 class="text-4xl font-black mb-6 leading-tight uppercase">Bí Quyết Sourcing <br> Hoa Kỳ 2026</h2>
+                        <p class="text-red-100 mb-10 text-lg font-light">Tải ngay bản kế hoạch chi tiết giúp bạn thâm nhập thị trường Mỹ an toàn và hiệu quả.</p>
+                        <ul class="space-y-4 font-bold text-sm">
+                            <li>✅ Luật FDA & Tiêu chuẩn Hải quan</li>
+                            <li>✅ Top 5 ngành hàng tiềm năng</li>
+                            <li>✅ Danh mục thẩm định đối tác</li>
+                        </ul>
+                    </div>
+                    <div class="p-12 md:p-20 md:w-7/12 bg-white flex flex-col justify-center">
+                        <form id="lead-form" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <input type="text" id="lead-name" placeholder="Họ và tên" required class="w-full px-6 py-4 bg-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-red-600 border-none shadow-inner">
+                                <input type="email" id="lead-email" placeholder="Email công việc" required class="w-full px-6 py-4 bg-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-red-600 border-none shadow-inner">
                             </div>
-
-                            <!-- Form -->
-                            <form id="lead-form" class="space-y-4" novalidate>
-                                <div>
-                                    <label for="lead-name" class="block text-sm font-semibold text-gray-700 mb-1">Họ và Tên *</label>
-                                    <input
-                                        type="text"
-                                        id="lead-name"
-                                        name="fullName"
-                                        placeholder="Nguyễn Văn A"
-                                        required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition text-gray-800"
-                                    />
-                                </div>
-                                <div>
-                                    <label for="lead-email" class="block text-sm font-semibold text-gray-700 mb-1">Email Doanh Nghiệp *</label>
-                                    <input
-                                        type="email"
-                                        id="lead-email"
-                                        name="email"
-                                        placeholder="email@ctyban.com"
-                                        required
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition text-gray-800"
-                                    />
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="lead-phone" class="block text-sm font-semibold text-gray-700 mb-1">Số Điện Thoại *</label>
-                                        <input
-                                            type="tel"
-                                            id="lead-phone"
-                                            name="phone"
-                                            placeholder="09xxx..."
-                                            required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition text-gray-800"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label for="lead-company" class="block text-sm font-semibold text-gray-700 mb-1">Tên Công Ty *</label>
-                                        <input
-                                            type="text"
-                                            id="lead-company"
-                                            name="company"
-                                            placeholder="Cty TNHH..."
-                                            required
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition text-gray-800"
-                                        />
-                                    </div>
-                                </div>
-                                <div id="form-error" class="hidden text-red-600 text-sm font-medium"></div>
-                                <button
-                                    type="submit"
-                                    id="lead-submit-btn"
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md flex items-center justify-center gap-2"
-                                >
-                                    <span id="btn-text">📩 Gửi Cho Tôi Ngay!</span>
-                                    <span id="btn-loading" class="hidden">⏳ Đang gửi...</span>
-                                </button>
-                                <p class="text-xs text-gray-400 text-center">🔒 Chúng tôi tôn trọng quyền riêng tư của bạn. Không spam.</p>
-                            </form>
-                        </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <input type="tel" id="lead-phone" placeholder="Số điện thoại" required class="w-full px-6 py-4 bg-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-red-600 border-none shadow-inner">
+                                <input type="text" id="lead-company" placeholder="Tên công ty" required class="w-full px-6 py-4 bg-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-red-600 border-none shadow-inner">
+                            </div>
+                            <div id="form-error" class="hidden text-red-600 font-bold text-sm uppercase"></div>
+                            <div id="form-success" class="hidden text-green-600 font-bold bg-green-50 p-8 rounded-2xl border border-green-200 text-center">
+                                🎉 Thành công! Chúng tôi đã gửi link tải qua email của bạn.
+                            </div>
+                            <button type="submit" id="lead-submit-btn" class="w-full bg-gray-900 text-white font-black py-5 rounded-xl hover:bg-black transition-all shadow-xl hover:-translate-y-1 uppercase tracking-widest text-sm">
+                                <span id="btn-text">Gửi Cẩm Nang Cho Tôi</span>
+                                <span id="btn-loading" class="hidden animate-pulse">Đang Xử Lý...</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA -->
-        <section id="contact" class="py-20 md:py-32 bg-blue-900">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Bạn đã sẵn sàng Xuất khẩu sang Mỹ?</h2>
-                <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-8">
-                    Hãy kết nối ngay. Đội ngũ của chúng tôi sẵn sàng giúp bạn khơi mở tiềm năng sản xuất của Việt Nam cho doanh nghiệp của bạn.
-                </p>
-                <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA" class="inline-block bg-red-600 text-white font-bold py-4 px-10 rounded-full text-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Bắt đầu ngay hôm nay
+        <section id="contact" class="py-32 bg-red-600 text-white text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl md:text-8xl font-black mb-12 uppercase tracking-tighter leading-none">Bắt Đầu <br> Hành Trình?</h2>
+                <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA" class="bg-white text-red-600 font-black py-6 px-16 rounded-full text-2xl hover:bg-gray-100 transition-all shadow-2xl inline-block hover:scale-110 active:scale-95 uppercase tracking-widest">
+                    ĐẶT LỊCH HẸN NGAY
                 </a>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-black text-gray-400 py-12">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 class="text-xl font-bold text-white mb-4">Vietnam<span class="text-red-600">Made</span></h3>
-            <p class="text-sm">Một chương trình bởi <a href="https://ready2us.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-red-600">Ready2US</a>. Kết nối doanh nghiệp Mỹ với các nhà sản xuất Việt Nam hàng đầu.</p>
-          </div>
-          <div>
-            <h4 class="font-semibold text-white mb-4">Liên kết nhanh</h4>
-            <ul class="space-y-2">
-              <li><a href="#about" class="hover:text-red-600 transition-colors">Về chúng tôi</a></li>
-              <li><a href="#why-vietnam" class="hover:text-red-600 transition-colors">Tại sao chọn Việt Nam</a></li>
-              <li><a href="#services" class="hover:text-red-600 transition-colors">Dịch vụ</a></li>
-              <li><a href="#brands" class="hover:text-red-600 transition-colors">Thương hiệu</a></li>
-              <li><a href="#how-it-works" class="hover:text-red-600 transition-colors">Quy trình</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-semibold text-white mb-4">Liên hệ</h4>
-            <ul class="space-y-2 text-sm">
-              <li>Email: <a href="mailto:info@ready2us.com" class="hover:text-red-600">info@ready2us.com</a></li>
-              <li>Điện thoại: +1 (641) 330-0560</li>
-              <li>Houston, TX 77072, Hoa Kỳ</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-semibold text-white mb-4">Theo dõi</h4>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-red-600 transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.388 0-1.601 1.076-1.601 2.206v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.336 8.905H4.002v-8.59h2.671v8.59zM17.638 2H6.362A4.362 4.362 0 002 6.362v11.276A4.362 4.362 0 006.362 22h11.276A4.362 4.362 0 0022 17.638V6.362A4.362 4.362 0 0017.638 2z" clip-rule="evenodd"></path></svg></a>
-              <a href="#" class="hover:text-red-600 transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+    <footer class="bg-black text-gray-500 py-24 px-6">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-black text-white mb-8 tracking-tighter">Vietnam<span class="text-red-600">Made</span></div>
+                    <p class="max-w-md text-lg leading-relaxed text-gray-400">Cầu nối uy tín nhất thế giới giúp các doanh nghiệp quốc tế khai mở sức mạnh sản xuất của Việt Nam.</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Pháp Lý</h5>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="#" class="hover:text-red-600">Chính sách Bảo mật</a></li>
+                        <li><a href="#" class="hover:text-red-600">Điều khoản Dịch vụ</a></li>
+                        <li><a href="#" class="hover:text-red-600">Quy chuẩn Đạo đức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8 uppercase tracking-widest text-xs">Liên Hệ</h5>
+                    <p class="text-sm leading-loose text-gray-400">Houston, Texas, USA<br>info@ready2us.com</p>
+                </div>
             </div>
-          </div>
+            <div class="border-t border-white/5 pt-12 text-center text-[10px] uppercase tracking-[0.3em]">
+                &copy; 2026 READY2US. GLOBAL EXPORT EXCELLENCE.
+            </div>
         </div>
-        <div class="border-t border-gray-800 pt-8 text-center text-sm">
-          <p>&copy; 2024 Ready2US. Đã đăng ký bản quyền.</p>
-        </div>
-      </div>
     </footer>
 
     <script>
-      // ============================================================
-      // CAMPAIGN CONFIG — Auto-generated by Antigravity SOP
-      // ============================================================
       const CAMPAIGN_CONFIG = {
         campaignName: 'VietnamMade_VI',
-        fileLink: 'https://ready2us.com/portal/space/kho-tai-nguyen/post/sach-huong-dan-tiep-can-thi',
         webAppUrl: 'https://script.google.com/macros/s/AKfycbzlPiUSW_v-GW2Z5fmxX_gTBjrhkCJedhrZzbJNjqxrd6BEFT2xhONYlcfyJEZWNkWopA/exec'
       };
 
-      // LEAD FORM HANDLER
       document.addEventListener('DOMContentLoaded', function() {
-        const leadForm = document.getElementById('lead-form');
-        if (!leadForm) return;
-
-        leadForm.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const fullName = document.getElementById('lead-name').value.trim();
-          const email    = document.getElementById('lead-email').value.trim();
-          const phone    = document.getElementById('lead-phone').value.trim();
-          const company  = document.getElementById('lead-company').value.trim();
-          
-          const errEl = document.getElementById('form-error');
-          const btnText    = document.getElementById('btn-text');
-          const btnLoading = document.getElementById('btn-loading');
-
-          // Basic validation
-          errEl.classList.add('hidden');
-          if (!fullName || !email || !phone || !company) {
-            errEl.textContent = '⚠️ Vui lòng điền đầy đủ các thông tin.';
-            errEl.classList.remove('hidden');
-            return;
-          }
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            errEl.textContent = '⚠️ Định dạng email không hợp lệ.';
-            errEl.classList.remove('hidden');
-            return;
-          }
-
-          // Show loading
-          btnText.classList.add('hidden');
-          btnLoading.classList.remove('hidden');
-          document.getElementById('lead-submit-btn').disabled = true;
-
-          try {
-            const payload = {
-              campaignName: CAMPAIGN_CONFIG.campaignName,
-              fileLink:     CAMPAIGN_CONFIG.fileLink,
-              fullName,
-              email,
-              phone,
-              company,
-              timestamp:    new Date().toISOString()
-            };
-
-            await fetch(CAMPAIGN_CONFIG.webAppUrl, {
-              method: 'POST',
-              mode: 'no-cors',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-
-            // Show success state
-            leadForm.classList.add('hidden');
-            document.getElementById('form-success').classList.remove('hidden');
-
-          } catch (err) {
-            errEl.textContent = '❌ Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ email info@ready2us.com';
-            errEl.classList.remove('hidden');
-            btnText.classList.remove('hidden');
-            btnLoading.classList.add('hidden');
-            document.getElementById('lead-submit-btn').disabled = false;
-          }
-        });
-      });
-    </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // --- Sticky Header Logic ---
+        // Sticky Header & Mobile Menu
         const header = document.getElementById('page-header');
-        const logoText = document.getElementById('logo-text');
-        const navLinks = document.querySelectorAll('#page-header nav a');
-        const menuButton = document.getElementById('menu-button');
+        const menuBtn = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         const closeIcon = document.getElementById('close-icon');
-        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        const logoText = document.getElementById('logo-text');
 
         window.addEventListener('scroll', () => {
           if (window.scrollY > 10) {
-            header.classList.add('bg-white/90', 'backdrop-blur-sm', 'shadow-lg');
-            header.classList.remove('bg-transparent');
+            header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-xl', 'py-2');
+            header.classList.remove('bg-transparent', 'py-4');
             logoText.classList.replace('text-white', 'text-gray-900');
-            navLinks.forEach(link => link.classList.replace('text-gray-300', 'text-gray-600'));
-            menuButton.classList.replace('text-white', 'text-gray-900');
+            menuBtn.classList.replace('text-white', 'text-gray-900');
+            document.querySelectorAll('.header-link').forEach(l => l.classList.replace('text-white', 'text-gray-600'));
           } else {
-            header.classList.remove('bg-white/90', 'backdrop-blur-sm', 'shadow-lg');
-            header.classList.add('bg-transparent');
+            header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-xl', 'py-2');
+            header.classList.add('bg-transparent', 'py-4');
             logoText.classList.replace('text-gray-900', 'text-white');
-            navLinks.forEach(link => link.classList.replace('text-gray-600', 'text-gray-300'));
-            menuButton.classList.replace('text-gray-900', 'text-white');
+            if (mobileMenu.classList.contains('hidden')) menuBtn.classList.replace('text-gray-900', 'text-white');
+            document.querySelectorAll('.header-link').forEach(l => l.classList.replace('text-gray-600', 'text-white'));
           }
         });
 
-        menuButton.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-          menuIcon.classList.toggle('hidden');
-          closeIcon.classList.toggle('hidden');
-        });
-
-        mobileNavLinks.forEach(link => {
-          link.addEventListener('click', () => {
+        menuBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            menuIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            menuBtn.classList.replace('text-white', 'text-gray-900');
+          } else {
             mobileMenu.classList.add('hidden');
             menuIcon.classList.remove('hidden');
             closeIcon.classList.add('hidden');
-          });
+            document.body.style.overflow = '';
+            if (window.scrollY <= 10) menuBtn.classList.replace('text-gray-900', 'text-white');
+          }
         });
 
-        // --- Brand Showcase Logic ---
+        // Form Handling
+        const leadForm = document.getElementById('lead-form');
+        if (leadForm) {
+          leadForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            const errEl = document.getElementById('form-error');
+            const submitBtn = document.getElementById('lead-submit-btn');
+
+            errEl.classList.add('hidden');
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            submitBtn.disabled = true;
+
+            const payload = {
+              fullName: document.getElementById('lead-name').value,
+              email: document.getElementById('lead-email').value,
+              phone: document.getElementById('lead-phone').value,
+              company: document.getElementById('lead-company').value,
+              campaign: CAMPAIGN_CONFIG.campaignName
+            };
+
+            try {
+              await fetch(CAMPAIGN_CONFIG.webAppUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+              });
+              leadForm.classList.add('hidden');
+              document.getElementById('form-success').classList.remove('hidden');
+            } catch (err) {
+              errEl.textContent = '❌ Lỗi kết nối. Vui lòng thử lại.';
+              errEl.classList.remove('hidden');
+              btnText.classList.remove('hidden');
+              btnLoading.classList.add('hidden');
+              submitBtn.disabled = false;
+            }
+          });
+        }
+
+        // Brands Logic
         const brands = [
-            { id: 1, name: 'Vina Threads', category: 'Thời trang', description: 'Trang phục hiện đại, bền vững cho người tiêu dùng có ý thức.', imageUrl: 'https://images.pexels.com/photos/4210866/pexels-photo-4210866.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            { id: 2, name: 'Saigon Wares', category: 'Đồ gia dụng', description: 'Đồ trang trí nhà cửa bằng gốm và gỗ thủ công với phong cách tối giản.', imageUrl: 'https://images.pexels.com/photos/6434622/pexels-photo-6434622.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            { id: 3, name: 'Mekong Bites', category: 'Thực phẩm', description: 'Đồ ăn nhẹ Việt Nam chính gốc làm từ nguyên liệu hữu cơ.', imageUrl: 'https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            { id: 4, name: 'Hanoi Tech', category: 'Công nghệ', description: 'Thiết bị điện tử tiêu dùng và nhà thông minh sáng tạo từ Việt Nam.', imageUrl: 'https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            { id: 5, name: 'Dalat Chic', category: 'Thời trang', description: 'Thời trang cao cấp kết hợp lụa truyền thống với thiết kế đương đại.', imageUrl: 'https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            { id: 6, name: 'Hue Pottery', category: 'Đồ gia dụng', description: 'Gốm sứ nghệ thuật mang tinh hoa thủ công cung đình vào ngôi nhà bạn.', imageUrl: 'https://images.pexels.com/photos/8603613/pexels-photo-8603613.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            { id: 7, name: 'Pho Real', category: 'Thực phẩm', description: 'Bộ kit nấu Phở chất lượng nhà hàng cho trải nghiệm tinh tế tại gia.', imageUrl: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { name: 'Vina Threads', category: 'Thời trang', description: 'Trang phục hiện đại, bền vững mang hồn Việt.', imageUrl: 'https://images.pexels.com/photos/4210866/pexels-photo-4210866.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { name: 'Saigon Wares', category: 'Gia dụng', description: 'Gốm sứ cao cấp thiết kế tối giản cho không gian Mỹ.', imageUrl: 'https://images.pexels.com/photos/6434622/pexels-photo-6434622.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { name: 'Mekong Bites', category: 'Thực phẩm', description: 'Đồ ăn nhẹ hữu cơ 100% từ nông sản Việt Nam.', imageUrl: 'https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=600' },
+            { name: 'Hanoi Tech', category: 'Công nghệ', description: 'Thiết bị thông minh được nghiên cứu & phát triển tại Việt Nam.', imageUrl: 'https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&w=600' }
         ];
 
-        const searchBar = document.getElementById('search-bar');
-        const categoryFilter = document.getElementById('category-filter');
-        const brandGrid = document.getElementById('brand-grid');
-        const noResults = document.getElementById('no-results');
+        const grid = document.getElementById('brand-grid');
+        const catSelect = document.getElementById('category-filter');
+        if (grid && catSelect) {
+          const uniqueCats = ['Tất cả', ...new Set(brands.map(b => b.category))];
+          catSelect.innerHTML = uniqueCats.map(c => `<option value="${c}">${c}</option>`).join('');
 
-        const populateCategories = () => {
-            const categories = [...new Set(brands.map(brand => brand.category))];
-            categoryFilter.innerHTML = '<option value="all">Tất cả danh mục</option>';
-            categories.sort().forEach(category => {
-                const option = document.createElement('option');
-                option.value = category;
-                option.textContent = category;
-                categoryFilter.appendChild(option);
-            });
-        };
+          const render = () => {
+              const filter = catSelect.value;
+              const query = document.getElementById('search-bar').value.toLowerCase();
+              
+              grid.innerHTML = brands
+                .filter(b => (filter === 'Tất cả' || b.category === filter) && (b.name.toLowerCase().includes(query) || b.description.toLowerCase().includes(query)))
+                .map(b => `
+                  <div class="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-2xl transition-all border border-gray-100 group">
+                      <img src="${b.imageUrl}" class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-110">
+                      <div class="p-8">
+                          <span class="text-[10px] font-bold uppercase text-red-600 tracking-widest">${b.category}</span>
+                          <h4 class="font-black text-gray-900 mt-2 text-xl">${b.name}</h4>
+                          <p class="text-sm text-gray-500 mt-4 leading-relaxed">${b.description}</p>
+                      </div>
+                  </div>
+              `).join('');
+          };
 
-        const renderBrands = (brandsToRender) => {
-            brandGrid.innerHTML = '';
-            if (brandsToRender.length === 0) {
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
-                brandsToRender.forEach(brand => {
-                    const card = `
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                            <img src="${brand.imageUrl}" alt="${brand.name}" class="w-full h-48 object-cover">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <span class="text-sm font-semibold text-red-600 uppercase">${brand.category}</span>
-                                <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">${brand.name}</h3>
-                                <p class="text-gray-600 text-base flex-grow">${brand.description}</p>
-                                <div class="mt-4 pt-4 border-t border-gray-200 flex justify-end">
-                                    <a href="#" class="font-semibold text-red-600 hover:text-red-800 transition-colors duration-300 inline-flex items-center">
-                                        Xem chi tiết
-                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    brandGrid.innerHTML += card;
-                });
-            }
-        };
-        
-        const filterAndRender = () => {
-            const searchTerm = searchBar.value.toLowerCase();
-            const selectedCategory = categoryFilter.value;
-
-            const filteredBrands = brands.filter(brand => {
-                const matchesCategory = selectedCategory === 'all' || brand.category === selectedCategory;
-                const matchesSearch = brand.name.toLowerCase().includes(searchTerm) || brand.description.toLowerCase().includes(searchTerm);
-                return matchesCategory && matchesSearch;
-            });
-
-            renderBrands(filteredBrands);
-        };
-
-        populateCategories();
-        renderBrands(brands);
-        searchBar.addEventListener('input', filterAndRender);
-        categoryFilter.addEventListener('change', filterAndRender);
+          catSelect.addEventListener('change', render);
+          document.getElementById('search-bar').addEventListener('input', render);
+          render();
+        }
       });
     </script>
 </body>
