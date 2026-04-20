@@ -3,23 +3,16 @@ name: 🚀 Tự động đồng bộ FTP
 on:
   push:
     branches:
-      - main  # Thay bằng 'master' nếu bạn dùng tên branch cũ
+      - main
 
 jobs:
   web-deploy:
-    name: 🚚 Deploy Landing Page
+    name: 🚚 Deploy VietnamMade Landing Page
     runs-on: ubuntu-latest
     steps:
     - name: 📥 Lấy code mới nhất
       uses: actions/checkout@v4
-    
-    # MẸO: Nếu bạn dùng Vite/React/Next.js, hãy bỏ dấu # ở các dòng dưới để hệ thống build trước khi upload
-    # Bước chuẩn bị file (đã tắt để ưu tiên index.html bạn đang sửa)
-    # - name: 🏗️ Chuẩn bị file
-    #   run: |
-    #     cd .stitch/designs
-    #     cp new_index.html index.html
-    
+
     - name: 📤 Upload qua FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -28,5 +21,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
         port: 21
-        local-dir: ./.stitch/designs/
-        server-dir: lp/ # Đổi tên thư mục đích thành lp
+        local-dir: ./.stitch/designs/VietnamMade/
+        server-dir: VietnamMade/
