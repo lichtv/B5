@@ -1,0 +1,35 @@
+<!-- QUICK LEAD CAPTURE -->
+<section id="quick-lead" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #dc2626 0%, transparent 50%);"></div>
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-[3rem] p-10 md:p-16 shadow-2xl">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tight">Nhận lộ trình <span class="text-red-500">Global Sale</span></h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed">Để lại thông tin để nhận bản phân tích giải pháp và lộ trình phù hợp cho doanh nghiệp của bạn.</p>
+            </div>
+
+            <form action="https://script.google.com/macros/s/AKfycbzCqpbRKDWx8lkzZ4Q7mJAXFlC_kPnZRbAdGvC4RbPDLq-gjglCsDOU3iOw7AE0tl3y/exec" method="POST" class="space-y-6">
+                <!-- Hidden Fields -->
+                <input type="hidden" name="campaign" value="GlobalSale_Direct_Capture">
+                <input type="hidden" name="agos_token" value="AGOS_SECURE_2026">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" name="fullName" placeholder="Họ và tên của bạn" required 
+                        class="w-full bg-slate-800 border border-slate-700 text-white rounded-2xl px-6 py-4 focus:outline-none focus:border-red-500 transition shadow-inner">
+                    <input type="email" name="email" placeholder="Email công việc" required 
+                        class="w-full bg-slate-800 border border-slate-700 text-white rounded-2xl px-6 py-4 focus:outline-none focus:border-red-500 transition shadow-inner">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="tel" name="phone" placeholder="Số điện thoại / Zalo" required 
+                        class="w-full bg-slate-800 border border-slate-700 text-white rounded-2xl px-6 py-4 focus:outline-none focus:border-red-500 transition shadow-inner">
+                    <input type="text" name="company" placeholder="Tên doanh nghiệp" required 
+                        class="w-full bg-slate-800 border border-slate-700 text-white rounded-2xl px-6 py-4 focus:outline-none focus:border-red-500 transition shadow-inner">
+                </div>
+                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition transform hover:-translate-y-1 shadow-xl shadow-red-600/20 uppercase tracking-widest text-sm">
+                    Gửi yêu cầu & Nhận lộ trình ngay
+                </button>
+            </form>
+            <p class="text-[10px] text-slate-500 mt-6 text-center italic uppercase tracking-widest">Dữ liệu được bảo mật bởi hệ thống Ready2US Global Trust</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGOS v3.0.0 | Lean Revenue OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Newsreader:opsz,wght@6..72,400;6..72,700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { navy: '#001F3F', gold: '#D4AF37', deepgold: '#B89600', slate800: '#1e293b' },
+          fontFamily: { sans: ['Inter','sans-serif'], serif: ['Newsreader','serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0a0f1e; }
+    .glass {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .active-tab { border-bottom: 2px solid #D4AF37; color: #D4AF37; }
+    #app-container { display: none; }
+    .loading-shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  </style>
+</head>
+<body class="font-sans text-white min-h-screen selection:bg-gold/30">
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="min-h-screen flex items-center justify-center p-4">
+    <div class="glass rounded-3xl p-8 w-full max-w-md animate-fade-in shadow-2xl">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-gold rounded-2xl mx-auto flex items-center justify-center font-black text-navy text-2xl shadow-lg mb-4">A</div>
+        <h1 class="font-serif text-3xl font-bold">AGOS v3.0.0</h1>
+        <p class="text-gold/60 text-xs uppercase tracking-widest mt-1">Lean Revenue OS</p>
+      </div>
+      <div class="space-y-4">
+        <input type="text" id="login-url" placeholder="Apps Script Web App URL" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold/50 transition-all">
+        <input type="password" id="login-pass" placeholder="Mật khẩu hệ thống" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-gold/50 transition-all">
+        <button onclick="handleLogin()" id="login-btn" class="w-full bg-gold hover:bg-deepgold text-navy font-bold py-3.5 rounded-xl transition-all uppercase tracking-widest text-sm shadow-xl">Đăng Nhập Quản Trị</button>
+      </div>
+      <p id="login-error" class="text-red-400 text-xs mt-4 text-center hidden"></p>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <div id="app-container" class="flex flex-col min-h-screen">
+    <!-- NAVBAR -->
+    <nav class="glass border-b border-white/5 sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-gold rounded-lg flex items-center justify-center font-black text-navy text-sm">A</div>
+          <span class="font-serif text-xl font-bold">AGOS v3</span>
+        </div>
+        <div class="flex gap-6 text-xs uppercase tracking-widest font-bold text-white/50">
+          <button onclick="switchTab('tab-command')" id="btn-command" class="hover:text-white transition-all py-2 active-tab">Command Center</button>
+          <button onclick="switchTab('tab-prompt')" id="btn-prompt" class="hover:text-white transition-all py-2">Prompt Lab</button>
+          <button onclick="switchTab('tab-queue')" id="btn-queue" class="hover:text-white transition-all py-2">Sales Queue</button>
+        </div>
+        <button onclick="logout()" class="text-[10px] uppercase tracking-widest text-white/20 hover:text-white/50">Logout</button>
+      </div>
+    </nav>
+
+    <!-- TAB CONTENT -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+      
+      <!-- 1. COMMAND CENTER -->
+      <section id="tab-command" class="space-y-8">
+        <!-- Row 1: Pipeline Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="glass p-6 rounded-2xl border-l-4 border-l-gold">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">Total Leads</h3>
+            <p id="stat-total" class="text-4xl font-black">—</p>
+          </div>
+          <div class="glass p-6 rounded-2xl border-l-4 border-l-blue-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">New Leads</h3>
+            <p id="stat-new" class="text-4xl font-black">—</p>
+          </div>
+          <div class="glass p-6 rounded-2xl border-l-4 border-l-purple-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">AI Drafted</h3>
+            <p id="stat-drafted" class="text-4xl font-black">—</p>
+          </div>
+          <div class="glass p-6 rounded-2xl border-l-4 border-l-green-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">Meetings</h3>
+            <p id="stat-meeting" class="text-4xl font-black text-green-400">—</p>
+          </div>
+        </div>
+        <!-- Row 2: Engagement & Tracking Stats [FROM CODEX] -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="glass p-5 rounded-2xl border-l-4 border-l-amber-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">Engaged</h3>
+            <p id="stat-engaged" class="text-3xl font-black text-amber-400">—</p>
+          </div>
+          <div class="glass p-5 rounded-2xl border-l-4 border-l-cyan-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">Email Opens</h3>
+            <p id="stat-opens" class="text-3xl font-black text-cyan-400">—</p>
+          </div>
+          <div class="glass p-5 rounded-2xl border-l-4 border-l-pink-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">Email Clicks</h3>
+            <p id="stat-clicks" class="text-3xl font-black text-pink-400">—</p>
+          </div>
+          <div class="glass p-5 rounded-2xl border-l-4 border-l-emerald-400">
+            <h3 class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">Conversion</h3>
+            <p id="stat-rate" class="text-3xl font-black text-emerald-400">—%</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 glass p-8 rounded-3xl min-h-[300px]">
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="font-serif text-2xl font-bold">Revenue Matrix</h3>
+              <div class="text-[10px] text-white/30 uppercase tracking-widest font-bold">Real-time Performance</div>
+            </div>
+            <div class="h-64"><canvas id="funnelChart"></canvas></div>
+          </div>
+          <div class="glass p-8 rounded-3xl flex flex-col">
+            <h3 class="font-serif text-2xl font-bold mb-6">Recent Activity</h3>
+            <div id="activity-log" class="flex-grow overflow-y-auto space-y-4 max-h-[250px] pr-2 custom-scrollbar">
+              <!-- Logs will appear here -->
+              <div class="text-white/20 text-xs italic">Đang tải hoạt động mới nhất...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. PROMPT LAB (AI Draft Approval) -->
+      <section id="tab-prompt" class="hidden space-y-6">
+        <div class="flex justify-between items-end mb-4">
+          <div>
+            <h2 class="font-serif text-3xl font-bold">Prompt Lab</h2>
+            <p class="text-white/40 text-sm">Human-in-the-loop AI Outreach Approval</p>
+          </div>
+          <button onclick="fetchLeads('new')" class="text-xs text-gold border border-gold/30 px-4 py-2 rounded-lg hover:bg-gold/10 transition-all">Làm mới danh sách</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Lead List -->
+          <div class="glass rounded-3xl overflow-hidden flex flex-col h-[600px]">
+            <div class="p-4 border-b border-white/5 bg-white/5 flex justify-between">
+              <h4 class="text-[10px] uppercase tracking-widest font-black text-white/30">Queue: New Leads</h4>
+              <span id="badge-new-count" class="text-[10px] text-gold font-bold">0</span>
+            </div>
+            <div id="draft-lead-list" class="flex-grow overflow-y-auto p-4 space-y-3">
+              <div class="loading-shimmer h-20 rounded-xl"></div>
+              <div class="loading-shimmer h-20 rounded-xl"></div>
+            </div>
+          </div>
+
+          <!-- Editor -->
+          <div id="draft-editor-container" class="glass rounded-3xl p-8 flex flex-col gap-6 hidden">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 id="editor-lead-name" class="text-2xl font-black">—</h4>
+                <p id="editor-lead-info" class="text-gold text-xs uppercase tracking-widest">—</p>
+              </div>
+              <button onclick="generateDraft()" id="btn-generate-ai" class="bg-navy text-gold border border-gold/50 px-4 py-2 rounded-xl text-xs font-bold hover:bg-gold hover:text-navy transition-all">Generate AI</button>
+            </div>
+            <div class="flex-grow">
+              <textarea id="draft-textarea" class="w-full h-full min-h-[350px] bg-white/5 border border-white/10 rounded-2xl p-6 text-sm text-white/80 outline-none focus:border-gold/50 transition-all font-mono leading-relaxed" placeholder="AI Draft will appear here..."></textarea>
+            </div>
+            <div class="flex gap-4">
+              <button onclick="approveDraft()" id="btn-approve" class="flex-grow bg-gold hover:bg-deepgold text-navy font-black py-4 rounded-xl shadow-2xl uppercase tracking-widest text-sm transition-all">Approve & Send via Gmail</button>
+            </div>
+          </div>
+
+          <div id="editor-empty-state" class="glass rounded-3xl flex flex-center items-center justify-center text-white/20 italic p-20 text-center">
+            Chọn một Lead từ danh sách để bắt đầu tối ưu hóa email.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SALES QUEUE (CRM-lite) -->
+      <section id="tab-queue" class="hidden space-y-6">
+        <div class="flex justify-between items-end mb-4">
+          <div>
+            <h2 class="font-serif text-3xl font-bold">Sales Queue</h2>
+            <p class="text-white/40 text-sm">Lightweight B2B Pipeline Tracking</p>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="queue-search" onkeyup="filterQueue()" placeholder="Tìm tên, email..." class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs outline-none focus:border-gold/30">
+            <button onclick="fetchLeads('all')" class="bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg text-xs">Reload</button>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl overflow-hidden overflow-x-auto">
+          <table class="w-full text-left text-xs min-w-[1000px]">
+            <thead class="bg-white/5 text-white/30 uppercase font-black">
+              <tr>
+                <th class="p-6">Lead</th>
+                <th class="p-6">Company</th>
+                <th class="p-6">Source</th>
+                <th class="p-6">Score</th>
+                <th class="p-6">Tags</th>
+                <th class="p-6">📧</th>
+                <th class="p-6">Status</th>
+                <th class="p-6 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="queue-table-body" class="divide-y divide-white/5">
+              <!-- Leads injected here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="p-6 text-center text-white/10 text-[10px] uppercase tracking-[0.2em]">
+      &copy; 2026 AGOS BY READY2US | VietnamMade Ecosystem
+    </footer>
+  </div>
+
+  <style>
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.2); border-radius: 10px; }
+  </style>
+
+  <script>
+    let AGOS_TOKEN = '';
+    let API_URL = '';
+    let currentLeads = [];
+    let selectedLeadId = null;
+    let chartInstance = null;
+
+    // --- AUTH & INIT ---
+    async function handleLogin() {
+      const url = document.getElementById('login-url').value.trim();
+      const pass = document.getElementById('login-pass').value.trim();
+      const btn = document.getElementById('login-btn');
+      const errEl = document.getElementById('login-error');
+      
+      if(!url || !pass) return;
+
+      btn.innerText = 'Đang xác thực...';
+      btn.disabled = true;
+
+      try {
+        const loginUrl = `${url}?action=login&u=admin&p=${encodeURIComponent(pass)}`;
+        const res = await fetch(loginUrl);
+        const data = await res.json();
+
+        if(data.status === 'ok') {
+          AGOS_TOKEN = data.token;
+          API_URL = url;
+          sessionStorage.setItem('agos_v3_token', AGOS_TOKEN);
+          sessionStorage.setItem('agos_v3_url', API_URL);
+          initApp();
+        } else {
+          errEl.textContent = 'Mật khẩu không chính xác';
+          errEl.classList.remove('hidden');
+        }
+      } catch (e) {
+        errEl.textContent = 'Không thể kết nối API. Kiểm tra URL.';
+        errEl.classList.remove('hidden');
+      } finally {
+        btn.innerText = 'Đăng Nhập Quản Trị';
+        btn.disabled = false;
+      }
+    }
+
+    function initApp() {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('app-container').style.display = 'flex';
+      refreshAll();
+      setInterval(refreshAll, 60000); // Auto refresh every minute
+    }
+
+    function logout() {
+      sessionStorage.clear();
+      location.reload();
+    }
+
+    // Restore Session
+    window.onload = () => {
+      const savedToken = sessionStorage.getItem('agos_v3_token');
+      const savedUrl = sessionStorage.getItem('agos_v3_url');
+      if(savedToken && savedUrl) {
+        AGOS_TOKEN = savedToken;
+        API_URL = savedUrl;
+        initApp();
+      }
+    }
+
+    // --- TAB SYSTEM ---
+    function switchTab(tabId) {
+      ['tab-command', 'tab-prompt', 'tab-queue'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+        document.getElementById('btn-' + id.split('-')[1]).classList.remove('active-tab');
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+      document.getElementById('btn-' + tabId.split('-')[1]).classList.add('active-tab');
+    }
+
+    // --- DATA FETCHING ---
+    async function refreshAll() {
+      fetchStats();
+      fetchLeads('all');
+      fetchLogs();
+    }
+
+    async function fetchStats() {
+      try {
+        const res = await fetch(`${API_URL}?action=getStats&token=${AGOS_TOKEN}`);
+        const data = await res.json();
+        document.getElementById('stat-total').innerText = data.total;
+        document.getElementById('stat-new').innerText = data.new;
+        document.getElementById('stat-drafted').innerText = data.drafted;
+        document.getElementById('stat-meeting').innerText = data.meeting || 0;
+        document.getElementById('stat-engaged').innerText = data.engaged || 0;
+        document.getElementById('stat-opens').innerText = data.totalOpens || 0;
+        document.getElementById('stat-clicks').innerText = data.totalClicks || 0;
+        document.getElementById('stat-rate').innerText = data.conversionRate + '%';
+        try { document.getElementById('badge-new-count').innerText = data.new; } catch(x) {}
+        initChart(data);
+      } catch (e) {}
+    }
+
+    async function fetchLeads(filter) {
+      try {
+        const res = await fetch(`${API_URL}?action=getLeads&token=${AGOS_TOKEN}&filter=${filter}`);
+        currentLeads = await res.json();
+        renderPromptList();
+        renderQueueTable();
+      } catch (e) {}
+    }
+
+    async function fetchLogs() {
+      // Mock log fetching if needed, or implement action in Code.js
+      const logs = document.getElementById('activity-log');
+      // For now, let's just show a simple feed from current leads' last actions
+      const actions = currentLeads.filter(l => l.last_action).slice(0, 10);
+      if(actions.length === 0) {
+        logs.innerHTML = '<div class="text-white/10 text-xs italic">Chưa có hoạt động nào được ghi nhận.</div>';
+        return;
+      }
+      logs.innerHTML = actions.map(l => `
+        <div class="flex gap-3 text-[11px] border-b border-white/5 pb-2">
+          <div class="w-1.5 h-1.5 rounded-full bg-gold mt-1"></div>
+          <div>
+            <span class="text-white/40">${l.last_action}</span>
+            <span class="text-gold/80 ml-1">#${l.name}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- RENDERERS ---
+    function renderPromptList() {
+      const list = document.getElementById('draft-lead-list');
+      const newLeads = currentLeads.filter(l => l.status === 'New Lead');
+      
+      if(newLeads.length === 0) {
+        list.innerHTML = '<div class="text-white/20 italic text-center py-10 text-xs">Hết Lead mới cần duyệt.</div>';
+        return;
+      }
+
+      list.innerHTML = newLeads.map(l => `
+        <div onclick="selectLeadForDraft('${l.lead_id}')" class="p-4 rounded-xl border border-white/5 cursor-pointer transition-all ${selectedLeadId === l.lead_id ? 'bg-gold/20 border-gold/50' : 'hover:bg-white/5'}">
+          <div class="flex justify-between items-start mb-1">
+            <span class="font-bold">${l.name}</span>
+            <span class="text-[9px] ${l.score > 80 ? 'bg-green-400/20 text-green-400' : 'bg-white/10 text-white/50'} px-2 py-0.5 rounded">${l.score} pts</span>
+          </div>
+          <div class="text-[10px] text-white/40 truncate">${l.company}</div>
+          <div class="text-[9px] text-gold/60 mt-2 uppercase tracking-widest flex items-center gap-1">
+            ${l.ai_draft ? '<span>✨ Draft Ready</span>' : '<span class="text-white/20">⏳ Need Draft</span>'}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderQueueTable() {
+      const body = document.getElementById('queue-table-body');
+      body.innerHTML = currentLeads.map(l => {
+        const opens = l.email_opens || 0;
+        const clicks = l.email_clicks || 0;
+        const tags = (l.tags || '').toString();
+        const tagBadges = tags ? tags.split(',').map(t => `<span class="inline-block bg-white/5 text-white/40 px-1.5 py-0.5 rounded text-[8px] mr-1 mb-1">${t.trim()}</span>`).join('') : '<span class="text-white/10">—</span>';
+        return `
+        <tr class="hover:bg-white/5 transition-all">
+          <td class="p-6">
+            <div class="font-bold">${l.name}</div>
+            <div class="text-white/40 text-[10px]">${l.email}</div>
+          </td>
+          <td class="p-6 text-white/60">${l.company}</td>
+          <td class="p-6">
+             <div class="text-[10px] text-white/40">${l.campaign}</div>
+             <div class="text-[9px] text-gold/40 uppercase tracking-tighter">${l.source}</div>
+          </td>
+          <td class="p-6">
+            <span class="px-2 py-1 rounded bg-navy border border-white/10 font-bold ${l.score > 80 ? 'text-green-400' : l.score > 50 ? 'text-gold' : 'text-white/40'}">${l.score}</span>
+          </td>
+          <td class="p-6">
+            <div class="flex flex-wrap max-w-[120px]">${tagBadges}</div>
+          </td>
+          <td class="p-6">
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 text-[10px]" title="Opens">👁 ${opens}</span>
+              <span class="text-pink-400 text-[10px]" title="Clicks">🖱 ${clicks}</span>
+            </div>
+          </td>
+          <td class="p-6">
+            <select onchange="updateStatus('${l.lead_id}', this.value)" class="bg-transparent border border-white/10 rounded px-2 py-1 outline-none text-[10px]">
+              <option value="New Lead" ${l.status === 'New Lead' ? 'selected' : ''} class="bg-navy">New Lead</option>
+              <option value="Engaged" ${l.status === 'Engaged' ? 'selected' : ''} class="bg-navy">Engaged</option>
+              <option value="Outreach Sent" ${l.status === 'Outreach Sent' ? 'selected' : ''} class="bg-navy">Outreach Sent</option>
+              <option value="Replied" ${l.status === 'Replied' ? 'selected' : ''} class="bg-navy">Replied</option>
+              <option value="Meeting" ${l.status === 'Meeting' ? 'selected' : ''} class="bg-navy">Meeting</option>
+              <option value="Deal" ${l.status === 'Deal' ? 'selected' : ''} class="bg-navy">Deal</option>
+              <option value="Closed" ${l.status === 'Closed' ? 'selected' : ''} class="bg-navy">Closed</option>
+            </select>
+          </td>
+          <td class="p-6 text-right">
+            <button onclick="selectLeadForDraft('${l.lead_id}'); switchTab('tab-prompt')" class="text-gold hover:underline">Draft</button>
+          </td>
+        </tr>
+      `}).join('');
+    }
+
+    function filterQueue() {
+      const query = document.getElementById('queue-search').value.toLowerCase();
+      const rows = document.getElementById('queue-table-body').getElementsByTagName('tr');
+      for (let row of rows) {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(query) ? '' : 'none';
+      }
+    }
+
+    // --- ACTIONS ---
+    function selectLeadForDraft(id) {
+      selectedLeadId = id;
+      const lead = currentLeads.find(l => l.lead_id === id);
+      
+      document.getElementById('editor-empty-state').classList.add('hidden');
+      document.getElementById('draft-editor-container').classList.remove('hidden');
+      
+      document.getElementById('editor-lead-name').innerText = lead.name;
+      document.getElementById('editor-lead-info').innerText = `Company: ${lead.company} | Score: ${lead.score}`;
+      document.getElementById('draft-textarea').value = lead.ai_draft || '';
+      
+      renderPromptList(); // Update highlight
+    }
+
+    async function generateDraft() {
+      if(!selectedLeadId) return;
+      const btn = document.getElementById('btn-generate-ai');
+      btn.innerText = 'Đang xử lý...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_URL}?action=generateAIDraft&token=${AGOS_TOKEN}&id=${selectedLeadId}`);
+        const data = await res.json();
+        if(data.status === 'ok') {
+          document.getElementById('draft-textarea').value = data.draft;
+          // Refresh local data
+          const lead = currentLeads.find(l => l.lead_id === selectedLeadId);
+          lead.ai_draft = data.draft;
+        }
+      } finally {
+        btn.innerText = 'Re-generate AI';
+        btn.disabled = false;
+      }
+    }
+
+    async function approveDraft() {
+      if(!selectedLeadId) return;
+      const content = document.getElementById('draft-textarea').value;
+      const btn = document.getElementById('btn-approve');
+      btn.innerText = 'ĐANG GỬI...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_URL}?action=approveDraft&token=${AGOS_TOKEN}&id=${selectedLeadId}&content=${encodeURIComponent(content)}`);
+        const data = await res.json();
+        if(data.status === 'ok') {
+          alert('✅ Đã gửi thành công qua Gmail của bạn!');
+          selectedLeadId = null;
+          document.getElementById('draft-editor-container').classList.add('hidden');
+          document.getElementById('editor-empty-state').classList.remove('hidden');
+          refreshAll();
+        } else {
+          alert('Lỗi: ' + data.message);
+        }
+      } finally {
+        btn.innerText = 'Approve & Send via Gmail';
+        btn.disabled = false;
+      }
+    }
+
+    async function updateStatus(id, status) {
+      try {
+        await fetch(`${API_URL}?action=updateStatus&token=${AGOS_TOKEN}&id=${id}&status=${status}`);
+        fetchStats();
+        fetchLogs();
+      } catch (e) {}
+    }
+
+    // --- CHART (HYBRID: Pipeline + Engagement) ---
+    function initChart(data) {
+      const ctx = document.getElementById('funnelChart').getContext('2d');
+      if(chartInstance) chartInstance.destroy();
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Total', 'New', 'Engaged', 'Drafted', 'Replied', 'Meeting'],
+          datasets: [{
+            label: 'Pipeline',
+            data: [data.total, data.new, data.engaged||0, data.drafted, data.replied, data.meeting||0],
+            backgroundColor: [
+              'rgba(255, 255, 255, 0.05)', 
+              '#60a5fa', 
+              '#fbbf24',
+              '#D4AF37', 
+              '#4ade80',
+              '#34d399'
+            ],
+            borderColor: [
+              'rgba(255, 255, 255, 0.1)',
+              '#60a5fa',
+              '#fbbf24',
+              '#D4AF37',
+              '#4ade80',
+              '#34d399'
+            ],
+            borderWidth: 1,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { 
+            y: { 
+              display: true, 
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: 'rgba(255,255,255,0.2)', font: { size: 10 } }
+            }, 
+            x: { 
+              grid: { display: false }, 
+              ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 10, weight: 'bold' } } 
+            } 
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

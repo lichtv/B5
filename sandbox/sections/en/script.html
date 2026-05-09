@@ -1,0 +1,134 @@
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Sticky Header Logic ---
+            const header = document.getElementById('page-header');
+            const logoText = document.getElementById('logo-text');
+            const navLinks = document.querySelectorAll('#page-header nav a');
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const mobileNavLinks = mobileMenu.querySelectorAll('a');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow-lg');
+                    header.classList.remove('shadow-sm');
+                } else {
+                    header.classList.remove('shadow-lg');
+                    header.classList.add('shadow-sm');
+                }
+            });
+
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            // Close button inside menu
+            const closeBtnInside = document.getElementById('mobile-menu-close');
+            if (closeBtnInside) {
+                closeBtnInside.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            }
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+
+            // --- Back to Top Logic ---
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Share Logic ---
+            const shareBtn = document.getElementById('share-btn');
+            shareBtn.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'VietnamMade by Ready2US',
+                            text: 'Check out premium Made in Vietnam brands for global growth.',
+                            url: window.location.href
+                        });
+                    } catch (err) {
+                        console.log('Error sharing:', err);
+                    }
+                } else {
+                    // Fallback: Copy to clipboard
+                    const dummy = document.createElement('input');
+                    document.body.appendChild(dummy);
+                    dummy.value = window.location.href;
+                    dummy.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(dummy);
+                    alert('Link copied to clipboard!');
+                }
+            });
+
+            // --- Lead Form Handling ---
+            const leadForm = document.getElementById('lead-form');
+            const CAMPAIGN_CONFIG = {
+                campaignName: 'VietnamMade_EN_Brochure',
+                webAppUrl: (window.AGOS_CONFIG && window.AGOS_CONFIG.endpoints && window.AGOS_CONFIG.endpoints.core)
+                    || 'https://script.google.com/macros/s/AKfycbzCqpbRKDWx8lkzZ4Q7mJAXFlC_kPnZRbAdGvC4RbPDLq-gjglCsDOU3iOw7AE0tl3y/exec'
+            };
+
+            if (leadForm) {
+                leadForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    const btnText = document.getElementById('btn-text');
+                    const btnLoading = document.getElementById('btn-loading');
+                    const errEl = document.getElementById('form-error');
+                    const submitBtn = document.getElementById('lead-submit-btn');
+
+                    errEl.classList.add('hidden');
+                    btnText.classList.add('hidden');
+                    btnLoading.classList.remove('hidden');
+                    submitBtn.disabled = true;
+
+                    const payload = {
+                        fullName: document.getElementById('lead-name').value,
+                        email: document.getElementById('lead-email').value,
+                        phone: document.getElementById('lead-phone').value,
+                        company: document.getElementById('lead-company').value,
+                        campaign: CAMPAIGN_CONFIG.campaignName
+                    };
+
+                    try {
+                        await fetch(CAMPAIGN_CONFIG.webAppUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            body: JSON.stringify(payload)
+                        });
+                        leadForm.classList.add('hidden');
+                        document.getElementById('form-success').classList.remove('hidden');
+                    } catch (err) {
+                        errEl.textContent = '❌ Connection error. Please try again.';
+                        errEl.classList.remove('hidden');
+                        btnText.classList.remove('hidden');
+                        btnLoading.classList.add('hidden');
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+        });
+    </script>

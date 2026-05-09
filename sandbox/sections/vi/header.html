@@ -1,0 +1,57 @@
+  <!-- HEADER -->
+  <header id="page-header" class="sticky top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-white shadow-md">
+    <div class="container mx-auto px-6 relative z-50">
+      <div class="flex items-center justify-between">
+        <div id="logo-text" class="text-3xl font-black text-gray-900 tracking-tighter">
+          <a href="#home">Vietnam<span class="text-red-600">Made</span></a>
+        </div>
+
+        <nav class="hidden lg:flex items-center space-x-8">
+          <a href="#about" class="text-gray-600 hover:text-red-600 transition-colors duration-300 font-medium header-link">Về Chúng Tôi</a>
+          <a href="#process" class="text-gray-600 hover:text-red-600 transition-colors duration-300 font-medium header-link">Lộ Trình</a>
+          <a href="#bonuses" class="text-gray-600 hover:text-red-600 transition-colors duration-300 font-medium header-link">Quà Tặng</a>
+          <a href="/Global-Sale/index.html" target="_blank" rel="noopener noreferrer" class="text-blue-900 font-bold hover:text-red-600 transition-colors duration-300 header-link flex items-center gap-1 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 shadow-sm">
+            <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Giải pháp Global Sale
+          </a>
+        </nav>
+
+        <a href="/Global-Sale/assessment.html"
+          class="hidden lg:inline-block bg-red-600 text-white font-bold py-2.5 px-6 rounded-full hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-md uppercase text-[10px] tracking-widest">
+          Đánh giá mức độ sẵn sàng
+        </a>
+
+        <div class="lg:hidden">
+          <button id="menu-button" class="cursor-pointer text-gray-900 focus:outline-none p-2 rounded-md hover:bg-black/5 transition-colors block">
+            <svg id="menu-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+            <svg id="close-icon" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </header>
+  
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[9999] bg-white pt-24 overflow-y-auto h-screen w-full">
+    <!-- Close Button inside Menu -->
+    <button id="mobile-menu-close" class="absolute top-6 right-6 text-gray-900 hover:text-red-600 p-2 cursor-pointer focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <div class="flex flex-col items-center justify-center min-h-full py-12 space-y-8 w-full text-center">
+      <a href="#about" class="text-2xl font-bold text-gray-800 hover:text-red-600 mobile-link">Về Chúng Tôi</a>
+      <a href="#process" class="text-2xl font-bold text-gray-800 hover:text-red-600 mobile-link">Lộ Trình Ready2US</a>
+      <a href="#bonuses" class="text-2xl font-bold text-gray-800 hover:text-red-600 mobile-link">Quà Tặng Đặc Quyền</a>
+      <a href="/Global-Sale/index.html" target="_blank" rel="noopener noreferrer" class="text-2xl font-bold text-blue-900 hover:text-red-600 border-b-2 border-red-600 pb-1 mobile-link">Giải pháp Global Sale</a>
+      <a href="/Global-Sale/assessment.html" class="text-2xl font-bold text-red-600 mobile-link">Đánh giá mức độ sẵn sàng</a>
+      <a href="#faq" class="text-2xl font-bold text-gray-800 hover:text-red-600 mobile-link">Hỏi Đáp</a>
+      <a href="https://calendar.app.google/dp8t9Kaof4e6BzBMA"
+        class="bg-red-600 text-white font-bold py-4 px-10 rounded-full text-xl hover:bg-red-700 transition-all shadow-xl">
+        Bắt Đầu Ngay
+      </a>
+    </div>
+  </div>

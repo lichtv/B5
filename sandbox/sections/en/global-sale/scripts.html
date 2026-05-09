@@ -1,0 +1,243 @@
+<!-- SCRIPTS CHO NAVIGATION & BIỂU ĐỒ -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check for Lead Magnet Redirect
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('from') === 'leadmagnet') {
+            document.getElementById('lead-magnet-banner').classList.remove('hidden');
+        }
+    });
+
+    // --- PACKAGE SELECTION LOGIC ---
+    const CAMPAIGN_CONFIG = {
+        webAppUrl: 'https://script.google.com/macros/s/AKfycbzCqpbRKDWx8lkzZ4Q7mJAXFlC_kPnZRbAdGvC4RbPDLq-gjglCsDOU3iOw7AE0tl3y/exec'
+    };
+
+    window.selectPackage = async function(packageName) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email') || 'Unknown';
+        
+        console.log(`Selecting package ${packageName} for ${email}`);
+        
+        const payload = {
+            lead_id: 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            }),
+            fullName: localStorage.getItem('userName') || 'Package Selection',
+            email: email,
+            phone: 'N/A',
+            company: packageName,
+            campaign: 'GlobalSale_Package_Selected',
+            // Phase 2: Structured Fields
+            selected_package: packageName,
+            source: 'GlobalSale_Solution_Page',
+            timestamp: new Date().toISOString()
+        };
+
+        try {
+            // Send update to Google Sheet
+            fetch(CAMPAIGN_CONFIG.webAppUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            });
+            
+            // Show Success Modal
+            const modal = document.getElementById('package-success-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('selected-package-name').textContent = packageName;
+        } catch (err) {
+            console.error('Error selecting package:', err);
+        }
+    };
+
+    window.closeSuccessModal = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email') || 'Unknown';
+        const packageName = document.getElementById('selected-package-name').textContent;
+        
+        const modal = document.getElementById('package-success-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        // Redirect to Assessment Survey instead of Calendar
+        window.location.href = `assessment.html?email=${encodeURIComponent(email)}&package=${encodeURIComponent(packageName)}`;
+    };
+
+    // Xử lý đóng/mở Mobile Menu
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    function toggleMenu(forceClose = false) {
+        const isOpen = mobileMenu.classList.contains('flex');
+        if (forceClose || isOpen) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+            document.body.style.overflow = '';
+        } else {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu();
+        });
+    }
+
+    // Nút đóng bên trong menu
+    const closeBtn = document.getElementById('mobile-menu-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu(true);
+        });
+    }
+
+    // Tự động đóng menu khi nhấp vào bất kỳ link nào
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMenu(true);
+        });
+    });
+
+    // Cấu hình chung cho tooltip
+    const commonTooltipConfig = {
+        callbacks: {
+            title: function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) { return label.join(' '); }
+                return label;
+            }
+        }
+    };
+
+    const wrapLabel = (label, maxLength = 18) => {
+        if (label.length <= maxLength) return label;
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = words[0];
+        for (let i = 1; i < words.length; i++) {
+            if (currentLine.length + 1 + words[i].length <= maxLength) {
+                currentLine += ' ' + words[i];
+            } else {
+                lines.push(currentLine);
+                currentLine = words[i];
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    };
+
+    // --- BIỂU ĐỒ 1: RADAR CHART (GAP ANALYSIS) ---
+    const radarLabelsRaw = [
+        "Chuẩn hóa & Tuân thủ", 
+        "Vận hành chuỗi ổn định", 
+        "Năng lực tiếp cận Buyer", 
+        "Thấu hiểu ngách thị trường", 
+        "Mô hình hiện diện Mỹ", 
+        "Tối ưu chuỗi giá trị (Nâng cấp)"
+    ];
+    const radarLabelsWrapped = radarLabelsRaw.map(l => wrapLabel(l));
+
+    const ctxRadar = document.getElementById('capabilityGapChart').getContext('2d');
+    new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: radarLabelsWrapped,
+            datasets: [{
+                label: 'Tiêu chuẩn Nhà cung ứng Mỹ',
+                data: [100, 100, 100, 100, 100, 100],
+                fill: true,
+                backgroundColor: 'rgba(30, 58, 138, 0.15)', // Blue-900
+                borderColor: 'rgb(30, 58, 138)',
+                pointBackgroundColor: 'rgb(30, 58, 138)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(30, 58, 138)',
+                borderWidth: 2
+            }, {
+                label: 'DNNVV Hiện Tại (Gia công cơ bản)',
+                data: [40, 50, 20, 30, 10, 15],
+                fill: true,
+                backgroundColor: 'rgba(220, 38, 38, 0.4)', // Red-600
+                borderColor: 'rgb(220, 38, 38)',
+                pointBackgroundColor: 'rgb(220, 38, 38)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(220, 38, 38)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { family: "'Inter', sans-serif" }, padding: 20 }
+                },
+                tooltip: commonTooltipConfig
+            },
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.05)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    pointLabels: {
+                        font: { family: "'Inter', sans-serif", size: 11, weight: '600' },
+                        color: '#334155'
+                    },
+                    ticks: { display: false, min: 0, max: 100 }
+                }
+            }
+        }
+    });
+
+    // --- Assessment Result Handler ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = urlParams.get('score');
+        const suggested = urlParams.get('suggested');
+        const showResult = urlParams.get('show_result');
+
+        if (showResult && suggested) {
+            // Show Result Banner
+            const resultBanner = document.getElementById('assessment-result-banner');
+            if (resultBanner) {
+                resultBanner.classList.remove('hidden');
+                document.getElementById('result-score').textContent = score;
+                document.getElementById('result-pkg').textContent = suggested;
+                
+                // Scroll to result
+                setTimeout(() => {
+                    resultBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            }
+
+            // Highlight suggested package
+            const packages = document.querySelectorAll('#globalsale h3');
+            packages.forEach(pkg => {
+                if (pkg.textContent.includes(suggested)) {
+                    const card = pkg.closest('div');
+                    card.classList.add('ring-4', 'ring-red-500', 'ring-offset-4', 'ring-offset-slate-900', 'scale-105');
+                    
+                    // Add "Recommended" badge if not already there
+                    if (!card.querySelector('.recommend-badge')) {
+                        const badge = document.createElement('div');
+                        badge.className = 'recommend-badge absolute -top-4 left-1/2 -translate-x-1/2 bg-green-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg';
+                        badge.textContent = 'Đề xuất cho bạn';
+                        card.appendChild(badge);
+                    }
+                }
+            });
+        }
+    });
+</script>
