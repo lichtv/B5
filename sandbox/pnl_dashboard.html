@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ready2US - Antigravity P&L Dashboard v3.0</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Antigravity Kit -->
+  <link rel="stylesheet" href="index.css">
+  <script src="config/agos_config.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  
+  <style>
+    /* Custom Overrides for Dashboard Layout */
+    .app { 
+      display: grid; 
+      grid-template-columns: 280px 1fr; 
+      min-height: 100vh; 
+      background: var(--ag-bg);
+    }
+    
+    .sidebar { 
+      background: var(--ag-surface); 
+      border-right: 1px solid var(--ag-border); 
+      padding: 2.5rem 1.5rem; 
+      position: sticky; 
+      top: 0; 
+      height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      z-index: 100; 
+    }
+    
+    .logo-area { margin-bottom: 3.5rem; padding: 0 1rem; }
+    .logo-area h2 { 
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem; 
+      letter-spacing: -1px;
+    }
+    .logo-area p { 
+      font-size: 0.65rem; 
+      font-weight: 700; 
+      color: var(--ag-text-dim); 
+      text-transform: uppercase; 
+      letter-spacing: 1px;
+      margin-top: 4px; 
+    }
+    
+    .nav-btn { 
+      width: 100%; 
+      text-align: left; 
+      padding: 0.875rem 1.25rem; 
+      border: none; 
+      background: none; 
+      color: var(--ag-text-muted); 
+      cursor: pointer; 
+      border-radius: var(--ag-radius-md); 
+      font-weight: 600; 
+      margin-bottom: 0.5rem; 
+      transition: var(--ag-transition); 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      font-size: 0.95rem;
+    }
+    
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ag-text);
+    }
+    
+    .nav-btn.active { 
+      background: var(--ag-grad-primary); 
+      color: white; 
+      box-shadow: 0 8px 20px -5px var(--ag-primary-glow); 
+    }
+    
+    .main { 
+      padding: 3rem; 
+      max-width: 1600px; 
+      margin: 0 auto; 
+      width: 100%; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 2.5rem; 
+    }
+    
+    .header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 0.5rem; 
+    }
+    
+    .header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+    }
+    
+    .time-selector { 
+      display: flex; 
+      background: var(--ag-surface-alt); 
+      padding: 6px; 
+      border-radius: var(--ag-radius-lg); 
+      gap: 4px; 
+      border: 1px solid var(--ag-border);
+    }
+    
+    .time-tab { 
+      padding: 0.5rem 1.25rem; 
+      border-radius: var(--ag-radius-md); 
+      cursor: pointer; 
+      font-size: 0.85rem; 
+      font-weight: 600; 
+      transition: var(--ag-transition); 
+      border: none; 
+      background: none; 
+      color: var(--ag-text-muted); 
+    }
+    
+    .time-tab.active { 
+      background: var(--ag-surface); 
+      color: var(--ag-text); 
+      box-shadow: var(--ag-shadow); 
+      border: 1px solid var(--ag-border);
+    }
+    
+    .kpi-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 1.5rem; 
+    }
+    
+    .kpi-card {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: var(--ag-grad-primary);
+      opacity: 0.6;
+    }
+    
+    .kpi-label { 
+      font-size: 0.75rem; 
+      font-weight: 700; 
+      color: var(--ag-text-dim); 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px;
+    }
+    
+    .kpi-value { 
+      font-size: 2.25rem; 
+      font-weight: 800; 
+      margin: 0.75rem 0; 
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    .delta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .filter-bar { 
+      display: flex; 
+      gap: 1.5rem; 
+      margin-bottom: 1rem; 
+      align-items: center; 
+      background: var(--ag-surface); 
+      padding: 1.25rem; 
+      border-radius: var(--ag-radius-lg); 
+      border: 1px solid var(--ag-border);
+    }
+    
+    .filter-group { display: flex; flex-direction: column; gap: 6px; }
+    .filter-group label { 
+      font-size: 0.7rem; 
+      font-weight: 800; 
+      color: var(--ag-text-dim); 
+      text-transform: uppercase; 
+    }
+    
+    select { 
+      padding: 0.625rem 1rem; 
+      border-radius: var(--ag-radius-md); 
+      border: 1px solid var(--ag-border); 
+      background: var(--ag-surface-alt); 
+      color: var(--ag-text); 
+      font-weight: 600; 
+      min-width: 180px; 
+      outline: none;
+      transition: var(--ag-transition);
+    }
+    
+    select:focus { border-color: var(--ag-primary); }
+    
+    .chart-container { 
+      display: grid; 
+      grid-template-columns: 1.8fr 1fr; 
+      gap: 2rem; 
+    }
+    
+    .chart-box { height: 350px; margin-top: 1.5rem; position: relative; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    th { 
+      padding: 1.25rem 1.5rem; 
+      text-align: left; 
+      color: var(--ag-text-dim); 
+      text-transform: uppercase; 
+      font-size: 0.7rem; 
+      font-weight: 800; 
+      border-bottom: 1px solid var(--ag-border); 
+      letter-spacing: 0.5px;
+    }
+    td { 
+      padding: 1.25rem 1.5rem; 
+      border-bottom: 1px solid var(--ag-divider); 
+      font-size: 0.9rem; 
+    }
+    
+    .badge { 
+      padding: 6px 10px; 
+      border-radius: 6px; 
+      font-size: 0.65rem; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px;
+    }
+    
+    .badge-auto { 
+      background: rgba(16, 185, 129, 0.1); 
+      color: #10b981; 
+      border: 1px solid rgba(16, 185, 129, 0.2); 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 6px; 
+    }
+    .badge-auto::before { content: "⚡"; }
+    
+    .badge-manual { 
+      background: rgba(255, 255, 255, 0.05); 
+      color: var(--ag-text-muted); 
+      border: 1px solid var(--ag-border); 
+    }
+    
+    .view-content { display: none; animation: agFadeIn 0.5s ease-out; }
+    .view-content.active { display: flex; flex-direction: column; gap: 2.5rem; }
+    
+    @keyframes agFadeIn { 
+      from { opacity: 0; transform: translateY(20px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--ag-success);
+      display: inline-block; margin-right: 8px;
+      box-shadow: 0 0 10px var(--ag-success);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar ag-glass">
+      <div class="logo-area">
+        <h2 class="ag-gradient-text">Ready2US</h2>
+        <p>Antigravity Kit OS v3.0</p>
+      </div>
+      
+      <nav style="flex-grow: 1;">
+        <button class="nav-btn active" onclick="switchView('overview', this)">
+          <span>📊</span> Tổng quan P&L
+        </button>
+        <button class="nav-btn" onclick="switchView('drivers', this)">
+          <span>🚀</span> Phân tích hiệu quả
+        </button>
+      </nav>
+      
+      <div style="padding-top: 2rem; border-top: 1px solid var(--ag-divider);">
+        <button onclick="toggleTheme()" class="nav-btn">
+          <span>🌓</span> Đổi giao diện
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div>
+          <h1 id="view-title">Tổng quan P&L</h1>
+          <p id="status-text" style="font-size: 0.85rem; color: var(--ag-text-dim); display: flex; align-items: center; margin-top: 4px;">
+            <span class="status-dot"></span> Đang đồng bộ dữ liệu...
+          </p>
+        </div>
+        <div class="time-selector ag-glass" id="time-tabs"></div>
+      </header>
+
+      <!-- VIEW: OVERVIEW -->
+      <section id="view-overview" class="view-content active">
+        <div class="kpi-grid">
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Doanh thu (REV)</p>
+            <div class="kpi-value" id="kpi-rev">0</div>
+            <div class="delta" id="delta-rev" style="color:var(--ag-success)">↑ 12.5%</div>
+          </div>
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Tổng Chi phí</p>
+            <div class="kpi-value" id="kpi-total-cost">0</div>
+            <div class="delta" id="delta-cost" style="color:var(--ag-danger)">↑ 5.2%</div>
+          </div>
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Lợi nhuận gộp</p>
+            <div class="kpi-value" id="kpi-gross-profit">0</div>
+            <div class="delta" id="delta-gross" style="color:var(--ag-success)">↑ 8.1%</div>
+          </div>
+          <div class="ag-card kpi-card" style="background: var(--ag-surface-alt)">
+            <p class="kpi-label">Lợi nhuận ròng</p>
+            <div class="kpi-value ag-gradient-text" id="kpi-net-profit">0</div>
+            <div class="delta" id="delta-net" style="color:var(--ag-success)">↑ 15.3%</div>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <div class="ag-card">
+            <h3 style="font-family: 'Outfit';">Xu hướng Tài chính (12 tháng)</h3>
+            <div class="chart-box"><canvas id="trendChart"></canvas></div>
+          </div>
+          <div class="ag-card">
+            <h3 style="font-family: 'Outfit';">Cấu trúc Chi phí</h3>
+            <div class="chart-box"><canvas id="pieChart"></canvas></div>
+          </div>
+        </div>
+        
+        <div class="ag-card" style="padding: 0; overflow: hidden;">
+          <div style="padding: 1.5rem 1.5rem 0.5rem 1.5rem;">
+            <h3 style="font-family: 'Outfit';">Bảng chi tiết Khoản mục</h3>
+          </div>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã ID</th>
+                  <th>Khoản mục</th>
+                  <th>Thực tế</th>
+                  <th>Kế hoạch</th>
+                  <th>Nguồn dữ liệu</th>
+                  <th>Hiệu suất</th>
+                </tr>
+              </thead>
+              <tbody id="pnl-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: DRIVERS -->
+      <section id="view-drivers" class="view-content">
+        <div class="filter-bar ag-glass">
+          <div class="filter-group">
+            <label>Chiến dịch (Campaign)</label>
+            <select id="filter-campaign" onchange="updateAllViews()">
+              <option value="ALL">Tất cả chiến dịch</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Nguồn (Source)</label>
+            <select id="filter-source" onchange="updateAllViews()">
+              <option value="ALL">Tất cả nguồn</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="kpi-grid">
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Số lượng Lead</p>
+            <div class="kpi-value" id="kpi-leads">0</div>
+            <span class="badge badge-auto">Funnel Data</span>
+          </div>
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Số lượng Deal</p>
+            <div class="kpi-value" id="kpi-deals">0</div>
+            <span class="badge badge-auto">Funnel Data</span>
+          </div>
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Tỷ lệ Chuyển đổi (CR)</p>
+            <div class="kpi-value" id="kpi-cr">0%</div>
+            <p style="font-size:0.75rem; color:var(--ag-text-dim)">Hiệu quả phễu</p>
+          </div>
+          <div class="ag-card kpi-card">
+            <p class="kpi-label">Giá trị Deal TB (ASP)</p>
+            <div class="kpi-value" id="kpi-asp">0</div>
+            <p style="font-size:0.75rem; color:var(--ag-text-dim)">Doanh thu/Hợp đồng</p>
+          </div>
+        </div>
+        
+        <div class="ag-card">
+          <h3 style="font-family: 'Outfit';">Mối tương quan Lead & Doanh thu</h3>
+          <div class="chart-box"><canvas id="correlationChart"></canvas></div>
+        </div>
+        
+        <div class="ag-card" style="padding:0; overflow: hidden;">
+          <div style="padding:1.5rem 1.5rem 0.5rem 1.5rem;">
+            <h3 style="font-family: 'Outfit';">Bảng chỉ số Vận hành (Driver)</h3>
+          </div>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã ID</th>
+                  <th>Chỉ số</th>
+                  <th>Giá trị</th>
+                  <th>Nguồn dữ liệu</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody id="driver-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let globalData = null;
+    let charts = {};
+    let currentMonth = "ANNUAL";
+    const API_URL = (window.AGOS_CONFIG && window.AGOS_CONFIG.endpoints && window.AGOS_CONFIG.endpoints.finance)
+      || "https://script.google.com/macros/s/AKfycbzbNbA90I29veHMbheyG1kCREEKDR5h68roLIsBjXphnnfx6JYjXXiQr9cbK3z-FZXn8Q/exec";
+
+    // Chart.js Default Config for Antigravity Theme
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.05)';
+
+    async function init() {
+      try {
+        const res = await fetch(API_URL);
+        globalData = await res.json();
+        const tabsContainer = document.getElementById('time-tabs');
+        const months = Object.keys(globalData.items[0].plan_months);
+        
+        const createTab = (val, label, active = false) => {
+          const btn = document.createElement('button'); 
+          btn.className = `time-tab ${active?'active':''}`; 
+          btn.innerText = label;
+          btn.onclick = () => { 
+            document.querySelectorAll('.time-tab').forEach(t=>t.classList.remove('active')); 
+            btn.classList.add('active'); 
+            currentMonth = val; 
+            updateAllViews(); 
+          };
+          tabsContainer.appendChild(btn);
+        };
+        
+        createTab("ANNUAL", "📅 Toàn năm 2026", true);
+        months.forEach(m => createTab(m, m));
+        
+        populateFilters();
+        document.getElementById('status-text').innerHTML = `<span class="status-dot"></span> Đã cập nhật: ${new Date(globalData.timestamp).toLocaleTimeString('vi-VN')}`;
+        updateAllViews();
+      } catch (e) { 
+        document.getElementById('status-text').innerHTML = `<span class="status-dot" style="background:var(--ag-danger); box-shadow:0 0 10px var(--ag-danger)"></span> Lỗi kết nối API!`; 
+      }
+    }
+
+    function populateFilters() {
+      const campaigns = new Set(); const sources = new Set();
+      const breakdown = globalData.funnel_breakdown; 
+      if (!breakdown) return;
+      
+      Object.values(breakdown).forEach(m => {
+        Object.keys(m).forEach(c => { 
+          campaigns.add(c); 
+          Object.keys(m[c]).forEach(s => sources.add(s)); 
+        });
+      });
+      
+      const campS = document.getElementById('filter-campaign'); 
+      campaigns.forEach(c => { 
+        const o = document.createElement('option'); o.value = c; o.innerText = c; campS.appendChild(o); 
+      });
+      
+      const srcS = document.getElementById('filter-source'); 
+      sources.forEach(s => { 
+        const o = document.createElement('option'); o.value = s; o.innerText = s; srcS.appendChild(o); 
+      });
+    }
+
+    function switchView(viewId, btn) {
+      document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('view-' + viewId).classList.add('active');
+      btn.classList.add('active');
+      document.getElementById('view-title').innerText = btn.innerText.trim().substring(2);
+      updateAllViews();
+    }
+
+    function getData(item, month, type) {
+      if (month === "ANNUAL") { 
+        const s = type === 'actual' ? item.actual_months : item.plan_months; 
+        return Object.values(s || {}).reduce((a, b) => a + (b || 0), 0); 
+      }
+      return (type === 'actual' ? (item.actual_months ? item.actual_months[month] : 0) : item.plan_months[month]) || 0;
+    }
+
+    function updateAllViews() {
+      const fmt = (v) => new Intl.NumberFormat('vi-VN').format(Math.round(v || 0));
+      const month = currentMonth;
+      const campF = document.getElementById('filter-campaign').value;
+      const srcF = document.getElementById('filter-source').value;
+      
+      let rev = 0, direct = 0, indirect = 0, profit = 0, cogs = 0, upfront = 0, overhead = 0;
+
+      globalData.items.forEach(item => {
+        const act = getData(item, month, 'actual');
+        if (item.id === "SUMMARY_DOANH_THU") rev = act;
+        if (item.id === "SUMMARY_CHI_PHÍ_TRỰC_TIẾP") direct = act;
+        if (item.id === "SUMMARY_CHI_PHÍ_GIÁN_TIẾP") indirect = act;
+        if (item.id.includes("LÃI") || item.id === "SUMMARY_LÃI/_LỖ") profit = act;
+        
+        const id = item.id.toUpperCase();
+        if (id.includes("COGS")) cogs += act; 
+        else if (id.includes("UPFRONT")) upfront += act; 
+        else if (id.includes("OVERHEAD")) overhead += act;
+      });
+
+      let leads = 0, deals = 0;
+      const breakdown = globalData.funnel_breakdown;
+      if (breakdown) {
+        const tMs = month === "ANNUAL" ? Object.keys(breakdown) : [month];
+        tMs.forEach(m => { 
+          if (!breakdown[m]) return; 
+          Object.keys(breakdown[m]).forEach(c => { 
+            if (campF!=="ALL" && campF!==c) return; 
+            Object.keys(breakdown[m][c]).forEach(s => { 
+              if (srcF!=="ALL" && srcF!==s) return; 
+              leads += breakdown[m][c][s].leads; deals += breakdown[m][c][s].deals; 
+            }); 
+          }); 
+        });
+      }
+
+      document.getElementById('kpi-rev').innerText = fmt(rev);
+      document.getElementById('kpi-total-cost').innerText = fmt(direct + indirect);
+      document.getElementById('kpi-gross-profit').innerText = fmt(rev - direct);
+      document.getElementById('kpi-net-profit').innerText = fmt(profit);
+      document.getElementById('kpi-leads').innerText = fmt(leads);
+      document.getElementById('kpi-deals').innerText = fmt(deals);
+      document.getElementById('kpi-cr').innerText = (leads > 0 ? ((deals / leads) * 100).toFixed(1) : 0) + "%";
+      document.getElementById('kpi-asp').innerText = fmt(deals > 0 ? rev / deals : 0);
+
+      renderTables(month, fmt);
+      renderCharts(month, {direct, indirect, cogs, upfront, overhead});
+    }
+
+    function renderTables(month, fmt) {
+      const pnlBody = document.getElementById('pnl-table-body');
+      pnlBody.innerHTML = globalData.items.filter(i => !i.id.startsWith("SUMMARY") && !i.id.startsWith("DRV")).map(item => {
+        const act = getData(item, month, 'actual'); 
+        const pln = getData(item, month, 'plan'); 
+        const diff = act - pln;
+        const isRev = item.id.startsWith("REV"); 
+        const status = diff >= 0 ? (isRev ? 'TỐT' : 'CAO') : (isRev ? 'KÉM' : 'TỐT');
+        const isAuto = item.id.includes("LEAD") || item.id.includes("DEAL");
+        
+        return `<tr>
+          <td><span class="badge" style="background:var(--ag-surface-alt); color:var(--ag-text-muted)">${item.id}</span></td>
+          <td style="font-weight:600">${item.name}</td>
+          <td style="font-weight:700; color:var(--ag-text)">${fmt(act)}</td>
+          <td style="color:var(--ag-text-dim)">${fmt(pln)}</td>
+          <td><span class="badge ${isAuto?'badge-auto':'badge-manual'}">${isAuto?'Automation':'Manual'}</span></td>
+          <td><span style="color:${status.includes('TỐT')?'var(--ag-success)':'var(--ag-danger)'}; font-weight:700">${status}</span></td>
+        </tr>`;
+      }).join('');
+
+      const drvBody = document.getElementById('driver-table-body');
+      drvBody.innerHTML = globalData.items.filter(i => i.id.startsWith("DRV")).map(item => {
+        const val = getData(item, month, 'actual'); 
+        const isAuto = item.id.includes("LEAD") || item.id.includes("DEAL");
+        return `<tr>
+          <td><span class="badge" style="background:rgba(59, 130, 246, 0.1); color:var(--ag-primary)">${item.id}</span></td>
+          <td style="font-weight:600">${item.name}</td>
+          <td style="font-weight:700">${fmt(val)}</td>
+          <td><span class="badge ${isAuto?'badge-auto':'badge-manual'}">${isAuto?'Funnel Sync':'Manual'}</span></td>
+          <td><span style="color:var(--ag-success); font-weight:800">✓</span></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function renderCharts(selectedMonth, costs) {
+      const labels = Object.keys(globalData.items[0].plan_months); 
+      Object.values(charts).forEach(c => c.destroy());
+      
+      const revData = labels.map(m => getData(globalData.items.find(i => i.id === "SUMMARY_DOANH_THU"), m, 'actual'));
+      const profitData = labels.map(m => getData(globalData.items.find(i => i.id.includes("LÃI") || i.id === "SUMMARY_LÃI/_LỖ"), m, 'actual'));
+      
+      charts.trend = new Chart(document.getElementById('trendChart'), { 
+        type: 'line', 
+        data: { 
+          labels, 
+          datasets: [
+            { 
+              label: 'Doanh thu', 
+              data: revData, 
+              borderColor: '#3b82f6', 
+              backgroundColor: 'rgba(59, 130, 246, 0.1)', 
+              fill: true,
+              tension: 0.4
+            }, 
+            { 
+              label: 'Lợi nhuận', 
+              data: profitData, 
+              borderColor: '#8b5cf6',
+              tension: 0.4
+            }
+          ]
+        }, 
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', align: 'end' } },
+          scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' } }, x: { grid: { display: false } } }
+        }
+      });
+      
+      charts.pie = new Chart(document.getElementById('pieChart'), { 
+        type: 'doughnut', 
+        data: { 
+          labels: ['COGS', 'Upfront', 'Overhead', 'Khác'], 
+          datasets: [{ 
+            data: [costs.cogs, costs.upfront, costs.overhead, Math.max(0, (costs.direct+costs.indirect)-(costs.cogs+costs.upfront+costs.overhead))], 
+            backgroundColor: ['#3b82f6', '#8b5cf6', '#f59e0b', '#64748b'],
+            borderWidth: 0
+          }]
+        }, 
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false, 
+          cutout: '75%',
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+      
+      const leadData = labels.map(m => { 
+        let s = 0; 
+        globalData.items.filter(i => i.id.startsWith("DRV_LEAD")).forEach(i => s += getData(i, m, 'actual')); 
+        return s; 
+      });
+      
+      charts.corr = new Chart(document.getElementById('correlationChart'), { 
+        type: 'bar', 
+        data: { 
+          labels, 
+          datasets: [
+            { label: 'Leads', data: leadData, backgroundColor: 'rgba(59, 130, 246, 0.2)', borderRadius: 4, yAxisID: 'y' }, 
+            { label: 'Revenue', data: revData, type: 'line', borderColor: '#f8fafc', yAxisID: 'y1', tension: 0.4 }
+          ]
+        }, 
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false, 
+          scales: { 
+            y: { position: 'left' }, 
+            y1: { position: 'right', grid: { display: false } } 
+          } 
+        }
+      });
+    }
+
+    function toggleTheme() { 
+      const t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; 
+      document.documentElement.setAttribute('data-theme', t); 
+    }
+    
+    init();
+  </script>
+</body>
+</html>

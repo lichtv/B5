@@ -1,0 +1,72 @@
+    <!-- LEAD MAGNET -->
+    <section id="lead-magnet" class="py-24 bg-white">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div class="bg-gray-900 rounded-[3rem] overflow-hidden flex flex-col md:flex-row shadow-2xl">
+          <div class="bg-red-600 p-12 md:p-16 text-white md:w-5/12 flex flex-col justify-center">
+            <h2 class="text-xl md:text-2xl font-black mb-6 leading-tight uppercase">Cẩm nang đưa sản phẩm Việt vào Mỹ 2026</h2>
+            <p class="text-red-100 mb-10 text-base font-normal">Bản đồ chiến lược và check-list chi tiết nhất để bạn không phạm sai lầm khi bắt đầu.</p>
+            <ul class="space-y-4 font-bold text-sm">
+              <li class="flex gap-3"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Luật FDA & Tiêu chuẩn Mỹ</li>
+              <li class="flex gap-3"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Phương pháp tìm kiếm Đối tác B2B</li>
+              <li class="flex gap-3"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Quản lý ngân sách "Thử & Sai"</li>
+            </ul>
+          </div>
+          <div class="p-12 md:p-16 md:w-7/12 bg-gray-50 flex flex-col justify-center">
+            <form id="lead-form" action="https://script.google.com/macros/s/AKfycbzCqpbRKDWx8lkzZ4Q7mJAXFlC_kPnZRbAdGvC4RbPDLq-gjglCsDOU3iOw7AE0tl3y/exec" method="POST" class="space-y-6">
+              <!-- Hidden Fields for No-JS Submission -->
+              <input type="hidden" name="campaign" value="VietnamMade_VI">
+              <input type="hidden" name="agos_token" value="AGOS_SECURE_2026">
+              
+              <div class="grid grid-cols-1 gap-6">
+                <input type="email" id="lead-email" name="email" placeholder="Email công việc của bạn" required autocomplete="email"
+                  class="w-full px-6 py-4 bg-white rounded-xl outline-none focus:ring-2 focus:ring-red-600 border border-gray-200 shadow-xl transition-all text-lg font-bold">
+              </div>
+
+              <!-- Hidden Fields initially -->
+              <div id="extended-fields" class="hidden space-y-6 animate-fade-in">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <input type="text" id="lead-name" name="fullName" placeholder="Họ và tên" required
+                    class="w-full px-6 py-4 bg-white rounded-xl outline-none focus:ring-2 focus:ring-red-600 border border-gray-200 shadow-sm">
+                  <input type="tel" id="lead-phone" name="phone" placeholder="Số điện thoại / Zalo" required
+                    class="w-full px-6 py-4 bg-white rounded-xl outline-none focus:ring-2 focus:ring-red-600 border border-gray-200 shadow-sm">
+                </div>
+                <div class="grid grid-cols-1 gap-6">
+                  <input type="text" id="lead-company" name="company" placeholder="Tên công ty / Thương hiệu" required
+                    class="w-full px-6 py-4 bg-white rounded-xl outline-none focus:ring-2 focus:ring-red-600 border border-gray-200 shadow-sm">
+                </div>
+                <!-- Email Confirm Row -->
+                <div class="grid grid-cols-1 gap-6">
+                  <div class="relative">
+                    <input type="email" id="lead-email-confirm" name="email_confirm" placeholder="Xác nhận Email (nhập lại)" required autocomplete="off"
+                      class="w-full px-6 py-4 bg-white rounded-xl outline-none focus:ring-2 focus:ring-red-600 border border-gray-200 shadow-sm transition-colors">
+                  </div>
+                  <div id="email-confirm-error" class="hidden -mt-4 text-red-600 text-xs font-bold"></div>
+                </div>
+              </div>
+
+              <div id="form-error" class="hidden text-red-600 font-bold text-sm uppercase"></div>
+              <div id="form-success"
+                class="hidden text-green-600 font-bold bg-green-50 p-8 rounded-2xl border border-green-200 text-center">
+                🎉 Thành công! Chúng tôi đã gửi Cẩm nang qua email của bạn.
+              </div>
+              <button type="submit" id="lead-submit-btn"
+                class="w-full bg-gray-900 text-white font-black py-5 rounded-xl hover:bg-black transition-all shadow-xl hover:-translate-y-1 uppercase tracking-widest text-sm">
+                <span id="btn-text">Gửi Cẩm Nang Cho Tôi</span>
+                <span id="btn-loading" class="hidden animate-pulse">Đang Xử Lý...</span>
+              </button>
+
+              <div class="relative flex items-center py-2">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="flex-shrink mx-4 text-gray-400 text-xs uppercase tracking-widest font-bold">Hoặc</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+              </div>
+
+              <a href="/Global-Sale/assessment.html" id="agos-demo-btn"
+                class="w-full bg-white text-gray-900 border-2 border-gray-900 font-black py-5 rounded-xl hover:bg-gray-900 hover:text-white transition-all shadow-lg hover:-translate-y-1 uppercase tracking-widest text-sm flex items-center justify-center gap-2">
+                Đánh giá mức độ sẵn sàng
+              </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -5,17 +5,20 @@ This workspace follows a 3-tier architecture. Agents must identify their role ba
 ### 🏛️ TIER 1: Master Architect (R&D)
 - **Scope:** `01_Lichtv_System_Master/`
 - **Role:** Maintain the "Source of Truth". Only perform core system updates, documentation refinement, and R&D for new skills.
+- **Authority:** **FINANCE & P&L AUTHORITY.** All financial calculation engines, tax logic (PIT), and P&L dashboards reside strictly in this tier.
 - **Rule:** Never allow customer-specific data to leak into this tier.
 
 ### 🚀 TIER 2: Production Agent (Operations)
 - **Scope:** `02_AGOS_Commercial_Hub/`
 - **Role:** Execute SME onboarding, campaign deployment, and lead tracking. Use templates from Tier 1.
-- **Rule:** Every project must have a `RESEARCH_LOG.md` and follow the `CLIENT_ONBOARDING_SPEC.md`.
+- **Priority:** Projects must be deployed **ASAP** (High Priority). The legacy "30-Day LeanOS" is deprecated for this tier.
+- **Rule:** **SANDBOX-FIRST MANDATORY.** All implementation must happen in `sandbox/` first. Move to `cdp/` ONLY after User/CEO approval ("Thống nhất"). Every project must have a `RESEARCH_LOG.md` and follow the `CLIENT_ONBOARDING_SPEC.md`.
 
 ### 🎓 TIER 3: Training Instructor (Sandbox)
 - **Scope:** `03_B5_Training_Sandbox/`
-- **Role:** Guide students through AI workflows using the simplified V2 Legacy framework.
-- **Rule:** Do not upgrade to V3 logic unless specifically instructed.
+- **Role:** Guide students through AI workflows. 
+- **Framework:** Uses the **V3.0_30Days_LeanOS** curriculum for structured training.
+- **Rule:** Do not deviate from the 30-day schedule unless specifically instructed.
 
 ---
 
@@ -36,11 +39,9 @@ Important files and folders (inside `cdp/` or `sandbox/`):
 - `index.css` - centralized styling and design tokens.
 - `lead_api.js` - lead capture / UTM tracking gateway.
 - `Code.js` - main Google Apps Script backend.
-- `scripts/finance_api.gs` - finance/P&L Apps Script API.
-- `pnl_dashboard.html` - finance/P&L dashboard.
 - `admin/dashboard.html` - internal admin dashboard.
 - `build.sh` - builds generated landing pages.
-- `docs/` - source of truth for project rules, P&L workflow, SOPs, blueprints.
+- `docs/` - source of truth for project rules, SOPs, blueprints. (NO FINANCE DATA).
 
 Generated output files:
 
@@ -79,6 +80,7 @@ For AI Workforce / OPC tasks, read in this order:
 
 ## Coding Rules
 
+- **Karpathy Protocol:** Follow [docs/karpathy_guidelines.md](file:///Users/mac/Library/CloudStorage/GoogleDrive-lichtv@gmail.com/.shortcut-targets-by-id/1-8YUtQWBFiEH5mEvaQJI-esJZvHl4ePY/PROJECT/READY2US/2026%20%7C%20vietnam-made/Project/01_Lichtv_System_Master/VietnamMade_Master/cdp/docs/karpathy_guidelines.md) for every coding task (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven).
 - Preserve the existing modular architecture.
 - Keep frontend behavior centralized in `cdp/index.js`.
 - Keep shared/custom styles in `cdp/index.css`.
@@ -126,3 +128,34 @@ When code changes are made:
 - For JS/CSS/dashboard changes, inspect the changed file and run any available local checks.
 - If verification cannot be run, state why in the final response.
 
+---
+
+## 🎯 AI Marketing Skills Deployment Strategy (v3.2.0)
+
+Agents must select the appropriate skills from `cdp/docs/mkt_skills/` based on the project phase and market focus.
+
+### 1. Phase-Based Skill Selection:
+
+| Phase | Core Objective | Primary Skills (cdp/docs/mkt_skills/) |
+| :--- | :--- | :--- |
+| **Gate 0** | Research & USP | `08-nghien-cuu-doi-thu.md`, `09-insight-khach-hang.md`, `product-marketing-context.md` |
+| **Onboarding** | Strategy & Planning | `00-ke-hoach-mkt.md`, `01-lich-noi-dung.md`, `10-tinh-kpi-nguoc.md` |
+| **Production** | Execution & Growth | `03-danh-gia-hieu-suat.md`, `07-bao-cao-marketing.md`, `21-audit-ads-performance.md` |
+
+### 2. Market-Focus Selection (Local vs. Global US):
+
+#### 🇻🇳 Vietnam Local Focus:
+- Use `benchmarks-vietnam.md` for industry standards.
+- Use `09-insight-khach-hang.md` for local consumer behavior.
+- **Backoffice (Agent 04):** Use `backoffice_skills/thue-tncn-vietnam.md` for tax, PIT 2026, and social insurance compliance.
+
+#### 🇺🇸 Global US Focus (High-Priority):
+Agents must prioritize the `mkt_skills/global_us/` library for US-bound projects (ATV, Viet-Ceramics US):
+- **Outreach:** `global_us/cold-email.md`, `global_us/sales-enablement.md`.
+- **Content/Psychology:** `global_us/copywriting.md`, `global_us/marketing-psychology.md`, `global_us/brand-storytelling.md`.
+- **Conversion:** `global_us/page-cro.md`, `global_us/lead-magnets.md`, `global_us/email-sequence.md`.
+- **Visibility:** `global_us/paid-ads.md`, `global_us/seo-audit.md`, `global_us/social-content.md`.
+
+### 3. Agent Execution Rule:
+- **Research First:** Trước khi viết code hoặc tạo nội dung cho khách hàng US, Codex/Antigravity BẮT BUỘC phải đọc tài liệu `global_us/copywriting.md` và `global_us/marketing-psychology.md` để đảm bảo văn phong và tâm lý học hành vi phù hợp với thị trường Mỹ.
+- **Data-Driven:** Khi tính toán ngân sách, phải dùng `10-tinh-kpi-nguoc.md`.

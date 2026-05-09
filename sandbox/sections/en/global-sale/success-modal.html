@@ -1,0 +1,20 @@
+<!-- SUCCESS MODAL (After Selecting Package) -->
+<div id="package-success-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+    <div class="bg-white rounded-[2.5rem] p-10 max-w-lg w-full text-center shadow-2xl border border-slate-100 relative">
+        <!-- Close Button -->
+        <button onclick="document.getElementById('package-success-modal').classList.replace('flex', 'hidden')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+        <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">✓</div>
+        <h2 class="text-2xl font-black text-slate-900 mb-2">Tuyệt vời!</h2>
+        <p class="text-slate-600 mb-8">Bạn đã lựa chọn gói <strong id="selected-package-name" class="text-red-600">...</strong>. <br>Bước tiếp theo: Hãy làm bài đánh giá nhanh để chúng tôi chuẩn bị lộ trình phù hợp nhất cho bạn.</p>
+        
+        <div class="space-y-4">
+            <button onclick="closeSuccessModal()" class="w-full bg-red-600 text-white font-bold py-4 rounded-xl hover:bg-red-700 transition shadow-lg uppercase tracking-wider text-sm">
+                Bắt đầu đánh giá mức độ sẵn sàng
+            </button>
+            <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Hoặc đợi chúng tôi liên hệ trong 24h</p>
+        </div>
+    </div>
+</div>
